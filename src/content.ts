@@ -44,7 +44,7 @@ export const ui = {
   "text033": "Her düğme yeni bir deneme başlatır. Ayrıntılı ayarlar aşağıda.",
   "text034": "Görsel yükle",
   "text035": "Otomatik iyileştir",
-  "text036": "PNG indir",
+  "text036": "İndir",
   "text037": "ÖNCESİ",
   "text038": "SONRASI",
   "text039": "Renk mikseri · RGB / HSV",
