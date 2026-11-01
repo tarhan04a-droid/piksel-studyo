@@ -42,3 +42,5 @@ Arayüz metinleri ve disk açıklamaları `src/content.ts` dosyasından düzenle
 ## İlk yayın sonrası mobil iyileştirme
 
 320 ve 390 piksel ekranlarda yatay taşma kontrol edildi. Mobil menü iki satıra ayrıldı; fotoğraf ayar panelinden önce gösterilir. TV tuşları, işlem düğmeleri ve mikser kontrollerinin dokunma hedefleri büyütüldü. Yerel fotoğraf seçimi otomasyon testi, Chrome eklentisinin dosya erişim izni nedeniyle tamamlanamadı; gerçek telefonda elle doğrulanmalıdır.
+
+Deployment notu: Vercel’in GitHub hesabını eşleştirebilmesi için commit kimliği, proje özelinde GitHub hesabının gizlilik korumalı `noreply` adresini kullanır. Global Git ayarları değiştirilmez.
