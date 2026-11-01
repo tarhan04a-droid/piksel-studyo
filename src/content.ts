@@ -19,8 +19,9 @@ export const techniques:Demo[]=[
 {name:'İNCELT',sub:"Açık bölgeleri küçültür; koyu bölgelerin genişlediğini görürsün.",settings:{filter:'erode'},image:'/images/demos/erosion-supper-original.png',slides:['/images/demos/erosion-supper-original.png','/images/demos/erosion-supper-result.png'],labels:['Orijinal · Son Akşam Yemeği','Aşındırma · İnceltme']},
 {name:'BÖLÜTLEME',sub:"Seçtiğin renge yakın bölgeleri beyaz, gerisini siyah yapar.",settings:{segment:true,hue:0},image:'/images/demos/segmentation-colors-original.jpeg',slides:['/images/demos/segmentation-colors-original.jpeg','/images/demos/segmentation-red-mask.png'],labels:['Orijinal · Renkli şeritler','Örnek maske · Kırmızı seçili']},
 {name:'OTOMATİK',sub:"Işık dağılımına göre ayar seçer; fotoğrafın otomatik düzenlenmiş halini görürsün.",settings:{},image:'/images/demos/auto-portrait-original.jpeg',slides:['/images/demos/auto-portrait-original.jpeg','/images/demos/auto-portrait-improved.png'],labels:['Orijinal · Portre','Otomatik · İyileştirilmiş portre']},
+{name:'HİSTOGRAM EŞİTLEME',sub:'Parlaklık dağılımını yayar; düşük kontrastlı fotoğrafta ton farklarının belirginleştiğini görürsün.',settings:{equalize:true},image:'/images/demos/equalization-shelves-original.jpeg',labels:['Orijinal · Dar ton dağılımı','Histogram eşitleme · Genişleyen tonlar']},
 ];
-export const recordTitles=['Gülpembe','Dönence','Güneşi Beklerken','Rengârenk','Şımarık','Gesi Bağları','Uzun İnce Bir Yoldayım','Ele Güne Karşı','Firuze','Sarı Laleler','Sil Baştan','Fırtına','Yalnızlık Senfonisi','Aşkın Olayım','İnce İnce Bir Kar Yağar','Beni Benimle Bırak','Ergün Plak'];
+export const recordTitles=['Gülpembe','Dönence','Güneşi Beklerken','Rengârenk','Şımarık','Gesi Bağları','Uzun İnce Bir Yoldayım','Ele Güne Karşı','Firuze','Sarı Laleler','Sil Baştan','Fırtına','Yalnızlık Senfonisi','Aşkın Olayım','İnce İnce Bir Kar Yağar','Beni Benimle Bırak','Ergün Plak','Bir Derdim Var'];
 
 // Arayüz metinleri bu dosyadan düzenlenir.
 export const ui = {
