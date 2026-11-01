@@ -31,8 +31,14 @@ Vite, React, TypeScript, HTML5 Canvas, CSS. AI coding agent: OpenAI Codex.
 
 ## GitHub ve Vercel
 
-Canlı URL: Henüz yayınlanmadı.
+Canlı URL: https://piksel-studyo.vercel.app/
 
-Depo: https://github.com/tarhan04a-droid/piksel-studyo. Vercel'de depoyu içe aktarın; Framework Preset: **Vite**, Build Command: **npm run build**, Output Directory: **dist**. Ortam değişkeni veya veritabanı gerekmez. Depoya yapılan yeni push'lar Vercel tarafından yeniden derlenir.
+İlk production yayını: 1 Kasım 2026.
 
-Arayüz metinleri ve disk açıklamaları `src/content.ts` dosyasından düzenlenir. Fontlar: Space Grotesk, Inter, JetBrains Mono ve yalnız cihaz göstergelerinde Doto. Sayılar Türkçe yerel biçimde gösterilir. Vercel yayını henüz yapılmadı.
+Depo: https://github.com/tarhan04a-droid/piksel-studyo. Vercel projesi GitHub deposuna bağlıdır; Framework Preset: **Vite**, Build Command: **npm run build**, Output Directory: **dist**. Ortam değişkeni veya veritabanı gerekmez. Depoya yapılan yeni push'lar Vercel tarafından yeniden derlenir.
+
+Arayüz metinleri ve disk açıklamaları `src/content.ts` dosyasından düzenlenir. Fontlar: Space Grotesk, Inter, JetBrains Mono ve yalnız cihaz göstergelerinde Doto. Sayılar Türkçe yerel biçimde gösterilir. Production yayını Vercel üzerinden erişilebilir.
+
+## İlk yayın sonrası mobil iyileştirme
+
+320 ve 390 piksel ekranlarda yatay taşma kontrol edildi. Mobil menü iki satıra ayrıldı; fotoğraf ayar panelinden önce gösterilir. TV tuşları, işlem düğmeleri ve mikser kontrollerinin dokunma hedefleri büyütüldü. Yerel fotoğraf seçimi otomasyon testi, Chrome eklentisinin dosya erişim izni nedeniyle tamamlanamadı; gerçek telefonda elle doğrulanmalıdır.
