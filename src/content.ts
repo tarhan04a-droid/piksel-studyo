@@ -157,6 +157,7 @@ export const ui = {
   "brand": "Pollmek Vision Sandbox",
   "brandSubtitle": "GÖRÜNTÜ İŞLEME OYUN ALANI",
   "navDiscs": "Diskler",
+  "combinedToolsHelp": "İşlemleri birlikte uygulamak için Diğer işlemler & ince ayarlar bölümünü aç.",
   "navPlayground": "Oyun alanı ",
   "heroEyebrow": " GÖRMEK, ANLAMANIN BAŞLANGICI.",
   "heroFirstLine": "Biraz ışık. ",
