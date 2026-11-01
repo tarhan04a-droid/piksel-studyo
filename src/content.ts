@@ -165,13 +165,13 @@ export const ui = {
   "heroDescription": "Bir fotoğraf seç, bir disk tak, farkı kaydırarak gör.",
   "heroNote": "Önce dene, sonra anla. ↘",
   "collectionHeading": "01 — Diskler: her biri tek bir işlem ",
-  "tryInPlayground": "Oyun alanında dene ↗",
+  "tryInPlayground": "Oyun alanında dene",
   "ctaHeading": "Şimdi sıra senin fotoğrafında.",
   "ctaDescription": "Kendi fotoğrafını seç, disklerle oyna, ne değiştiğini yan yana gör.",
   "ctaButton": "Kendi fotoğrafımla dene ",
   "privacyBadge": "↗ Fotoğrafın cihazından çıkmaz",
   "comparisonBadge": "◉ Önce-sonra, anında",
-  "learningBadge": "✳ Formülsüz öğren",
+  "learningBadge": "Formülsüz öğren",
   "footerDescription": "Merak eden herkes için bir görüntü işleme oyun alanı."
 } as const;
 
@@ -179,10 +179,10 @@ export const localCopy={
  title:'Çalışmalarım',close:'Çalışmalar penceresini kapat',
  notice:'Kayıtların yalnız bu cihaz ve tarayıcıda tutulur. Tarayıcı verilerini silersen kaybolur; bazı tarayıcılar uzun süre kullanılmayan kayıtları da temizleyebilir.',
  name:'Çalışmanın adı',placeholder:'Örn. Gün batımı',untitled:'Adsız çalışma',save:'Bu cihazda kaydet',busy:'İşlem sürüyor…',
- import:'JSON aç',backupHint:'Yedek almak için PNG ve JSON indir. PNG sonuç fotoğrafıdır; JSON, orijinal fotoğrafı ve ayarları içerir ve başka tarayıcıda yeniden açılır.',
+ import:'Yedekten aç',backupHint:'Başka bir cihazda devam etmek için çalışma yedeğini indir ve orada aç.',
  loading:'Kayıtların yükleniyor…',empty:'Henüz kaydın yok. İlk çalışmanı bu cihazda kaydet.',count:'kayıtlı çalışma',
- reopen:'Yeniden aç',png:'PNG indir',json:'JSON indir',delete:'Sil',confirmDelete:'Bu yerel kayıt kalıcı olarak silinsin mi?',yesDelete:'Evet, sil',cancel:'Vazgeç',
- saved:'Fotoğrafın ve ayarların bu tarayıcıda kaydedildi.',deleted:'Yerel kayıt silindi.',exported:'JSON yedeğin indirildi.',imported:'JSON açıldı; fotoğraf ve ayarlar oyun alanına aktarıldı. İstersen bu cihazda kaydet.',
+ reopen:'Yeniden aç',png:'Fotoğrafı indir',json:'Yedek indir',delete:'Sil',confirmDelete:'Bu yerel kayıt kalıcı olarak silinsin mi?',yesDelete:'Evet, sil',cancel:'Vazgeç',
+ saved:'Fotoğrafın ve ayarların bu tarayıcıda kaydedildi.',deleted:'Yerel kayıt silindi.',exported:'Çalışma yedeğin indirildi.',imported:'Yedek açıldı; fotoğraf ve ayarlar oyun alanına aktarıldı. İstersen bu cihazda kaydet.',
  quota:'Tarayıcının depolama alanı doldu. PNG/JSON yedeğini indirip eski kayıtları silebilirsin.',
  invalidFile:'Geçerli bir Pollmek JSON çalışma dosyası seç (en fazla 24 MB; görsel en fazla 1400 × 1400 piksel).',
  failed:'Yerel kayıt tamamlanamadı. Tarayıcıda depolama iznini ve boş alanı kontrol et; gizli modda kayıt kısıtlı olabilir.'

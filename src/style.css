@@ -101,3 +101,11 @@ body[data-scene] .local{color:#ff71dc}body[data-scene] .local i{background:#ff71
 @media(min-width:381px) and (max-width:700px){header>.account-trigger,header>.account-pending{grid-column:2;grid-row:1}header>.brand{grid-column:1;grid-row:1}}
 
 .save-work input[hidden]{display:none}.save-work>button+button{margin-left:8px}
+
+.account-trigger{display:inline-flex;align-items:center;justify-content:center;gap:9px}.works-folder-icon{width:26px;height:23px;flex-shrink:0}.save-to-works{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;margin:0 0 14px;font:500 14px Inter,sans-serif;color:var(--text-soft)}.save-to-works svg{width:26px;height:23px}.work-backup{margin-top:12px;font-size:13px;color:var(--text-soft)}.work-backup summary{cursor:pointer;min-height:44px;display:list-item;padding:12px 0}.work-backup button{margin-top:8px}.saved-works article>div .work-backup{margin:0}.work-backup p{max-width:45ch}
+
+header nav button{display:inline-flex;align-items:center;justify-content:center;gap:8px}.nav-disc-icon{width:24px;height:24px;flex-shrink:0}
+
+.playground-tv-icon{width:23px;height:23px;flex-shrink:0;vertical-align:middle}.try-button{display:inline-flex;align-items:center;justify-content:center;gap:9px}.cta .primary{display:inline-flex;align-items:center;justify-content:center;gap:12px}
+
+.features .learning-badge{display:inline-flex;align-items:center;gap:7px}.learning-badge img{width:23px;height:23px;object-fit:contain;flex-shrink:0}
