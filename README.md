@@ -44,3 +44,11 @@ Arayüz metinleri ve disk açıklamaları `src/content.ts` dosyasından düzenle
 320 ve 390 piksel ekranlarda yatay taşma kontrol edildi. Mobil menü iki satıra ayrıldı; fotoğraf ayar panelinden önce gösterilir. TV tuşları, işlem düğmeleri ve mikser kontrollerinin dokunma hedefleri büyütüldü. Yerel fotoğraf seçimi otomasyon testi, Chrome eklentisinin dosya erişim izni nedeniyle tamamlanamadı; gerçek telefonda elle doğrulanmalıdır.
 
 Deployment notu: Vercel’in GitHub hesabını eşleştirebilmesi için commit kimliği, proje özelinde GitHub hesabının gizlilik korumalı `noreply` adresini kullanır. Global Git ayarları değiştirilmez.
+
+## Yerel Çalışmalarım: mimari gerekçe
+
+Hesap veya backend gerektirmeyen bir görüntü işleme sitesi için kayıtlar IndexedDB kullanılarak tamamen tarayıcıda tutulur. Google girişi, Firebase SDK, bulut veritabanı ve Vercel ortam değişkenleri kullanılmaz. Fotoğrafın çalışma çözünürlüğündeki orijinali, PNG sonucu, küçük önizlemesi ve ayarlar aynı IndexedDB transaction’ında saklanır; yeniden açılabilir ve tek tek silinebilir.
+
+Kayıtlar yalnız aynı cihaz, tarayıcı ve site adresinde görünür; localhost ile production ayrı depolardır. Tarayıcı verilerinin silinmesi, gizli mod, kota sınırları ve Safari dahil tarayıcıların depolama temizliği kayıtları etkileyebilir. Bu nedenle her kayıt **PNG indir** (sonuç) ve **JSON indir** (orijinal fotoğraf + ayarlar) seçenekleri sunar. **JSON aç** ile yedek başka tarayıcıya taşınır; 24 MB dosya sınırı, PNG veri kontrolü, en fazla 1400 × 1400 boyut ve ayar aralıklarının doğrulanması uygulanır. Bulut kopyası yoktur.
+
+Firebase denemesi yalnız çalışma ağacında kalmıştı: Git geçmişi `git log -p --all` ile tarandı; Firebase config, API anahtarı, servis hesabı veya private key commit’lenmedi. Firebase’in dış konsolda oluşturulan projesi kaynak koddan bağımsızdır; bu site artık o projeye bağlanmaz.

@@ -24,9 +24,10 @@ export const recordTitles=['Gülpembe','Dönence','Güneşi Beklerken','Rengâre
 
 // Arayüz metinleri bu dosyadan düzenlenir.
 export const ui = {
+  comparisonPercent: "Karşılaştırma konumu",
   steps: ["Fotoğrafını seç veya örnekle başla.", "Bir işlem seç.", "Perdeyi kaydırarak farkı gör ve indir."],
   pixelUnit: "piksel",
-  "text005": " Tamamen tarayıcında",
+  "text005": " Düzenleme cihazında",
   "text013": "Disk seç",
   "text014": "POLLMEK ",
   "text015": "COLORVISION · MODEL 01",
@@ -41,9 +42,9 @@ export const ui = {
   "text031": "↺ Sıfırla",
   "text032": "1. Fotoğrafını seç veya örnekle başla. 2. Bir işlem seç. 3. Perdeyi kaydırarak farkı gör ve indir.",
   "text033": "Her düğme yeni bir deneme başlatır. Ayrıntılı ayarlar aşağıda.",
-  "text034": "＋ Görsel yükle",
-  "text035": "✳ Otomatik iyileştir",
-  "text036": "PNG indir ↧",
+  "text034": "Görsel yükle",
+  "text035": "Otomatik iyileştir",
+  "text036": "PNG indir",
   "text037": "ÖNCESİ",
   "text038": "SONRASI",
   "text039": "Renk mikseri · RGB / HSV",
@@ -94,7 +95,7 @@ export const ui = {
   "text085": "Renkleri ters çevir",
   "text086": "BÖLÜTLEME",
   "text087": "Görsel hazırlanıyor…",
-  "text088": "Görseli buraya sürükleyebilirsin. Dosyan cihazında kalır.",
+  "text088": "Görseli buraya sürükleyebilirsin. Fotoğrafın cihazında kalır.",
   "text089": "Kırmızı",
   "text090": "Yeşil",
   "text091": "Parlaklık",
@@ -172,4 +173,17 @@ export const ui = {
   "comparisonBadge": "◉ Önce-sonra, anında",
   "learningBadge": "✳ Formülsüz öğren",
   "footerDescription": "Merak eden herkes için bir görüntü işleme oyun alanı."
+} as const;
+
+export const localCopy={
+ title:'Çalışmalarım',close:'Çalışmalar penceresini kapat',
+ notice:'Kayıtların yalnız bu cihaz ve tarayıcıda tutulur. Tarayıcı verilerini silersen kaybolur; bazı tarayıcılar uzun süre kullanılmayan kayıtları da temizleyebilir.',
+ name:'Çalışmanın adı',placeholder:'Örn. Gün batımı',untitled:'Adsız çalışma',save:'Bu cihazda kaydet',busy:'İşlem sürüyor…',
+ import:'JSON aç',backupHint:'Yedek almak için PNG ve JSON indir. PNG sonuç fotoğrafıdır; JSON, orijinal fotoğrafı ve ayarları içerir ve başka tarayıcıda yeniden açılır.',
+ loading:'Kayıtların yükleniyor…',empty:'Henüz kaydın yok. İlk çalışmanı bu cihazda kaydet.',count:'kayıtlı çalışma',
+ reopen:'Yeniden aç',png:'PNG indir',json:'JSON indir',delete:'Sil',confirmDelete:'Bu yerel kayıt kalıcı olarak silinsin mi?',yesDelete:'Evet, sil',cancel:'Vazgeç',
+ saved:'Fotoğrafın ve ayarların bu tarayıcıda kaydedildi.',deleted:'Yerel kayıt silindi.',exported:'JSON yedeğin indirildi.',imported:'JSON açıldı; fotoğraf ve ayarlar oyun alanına aktarıldı. İstersen bu cihazda kaydet.',
+ quota:'Tarayıcının depolama alanı doldu. PNG/JSON yedeğini indirip eski kayıtları silebilirsin.',
+ invalidFile:'Geçerli bir Pollmek JSON çalışma dosyası seç (en fazla 24 MB; görsel en fazla 1400 × 1400 piksel).',
+ failed:'Yerel kayıt tamamlanamadı. Tarayıcıda depolama iznini ve boş alanı kontrol et; gizli modda kayıt kısıtlı olabilir.'
 } as const;
