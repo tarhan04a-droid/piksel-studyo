@@ -1,0 +1,2 @@
+import {process,type Settings} from './engine';
+self.onmessage=async(event:MessageEvent<{id:number;image:ImageData;settings:Settings}>)=>{const {id,image,settings}=event.data;try{const result=process(image,settings);let blob:Blob|undefined;try{if(typeof OffscreenCanvas!=='undefined'){const canvas=new OffscreenCanvas(result.width,result.height);canvas.getContext('2d')!.putImageData(result,0,0);blob=await canvas.convertToBlob({type:'image/png'})}}catch{}self.postMessage({id,result,blob})}catch{self.postMessage({id,error:true})}};
