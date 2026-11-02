@@ -13,6 +13,6 @@
 
 ## Kullanıcının tamamlayacağı teslim adımları
 
-- Private depoya ders sorumlusunun erişimi: GitHub hesabı bekleniyor.
+- Depo public olarak paylaşılacak; ders sorumlusu davetsiz inceleyebilir.
 - Teslim platformuna yukarıdaki iki bağlantının gönderilmesi: platform bilgisi bekleniyor.
 - Medya kullanım izinlerinin teyidi: `MEDIA_SOURCES.md` dosyasına bakın.

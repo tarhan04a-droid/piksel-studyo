@@ -23,7 +23,7 @@ Production çıktısı: `npm run build` → `dist/`. Önizleme: `npm run preview
 - HSV renk tonu ile nesne maskesi ve histogram istatistikleriyle otomatik iyileştirme.
 - TV üzerindeki **yuvarlak düğmeye tek tıklayarak** histogram panelini açıp kapatabilirsiniz. Canlı histogram ve kontrast kırılma noktaları yalnızca bu modda görünür. Genel parlaklık veya Kırmızı / Yeşil / Mavi kanalını seçerek orijinal ve işlenmiş görselin dağılımlarını aynı ölçekte karşılaştırabilirsiniz; her kanalın ortalaması ve min–maks aralığı ayrıca gösterilir. Histogram eşitleme ayrı işlem düğmesi ve disk olarak sunulur. Klavye kısayolu yoktur.
 
-Tüm görsel işlemleri cihazda HTML5 Canvas üzerinde gerçekleşir; dosyalar sunucuya gönderilmez. Performans için yüklenen görsellerin uzun kenarı en fazla 1400 piksele ölçeklenir; PNG bu çalışma çözünürlüğünden üretilir. JPEG, mevcut oturumda yüklenen orijinal dosyayı tam piksel boyutunda yeniden işler. Boyutlandırma indirme sırasında uygulanır; en uzun kenar 8192 ve toplam 24 milyon piksel sınırı vardır. Kaydedilmiş çalışmalar orijinal büyük dosyayı saklamaz. Vitrinde her işlem için örnek görseller bulunur; bazı sonuç kanalları sağlanan hazır karşılaştırma görsellerini, diğerleri Canvas üzerinde hesaplanan sonuçları gösterir. Oyun alanında işlemler her zaman orijinal görselden hesaplanır. Arayüz fontları Google Fonts üzerinden yüklenir; çevrimdışı durumda sistem fontları kullanılır.
+Tüm görsel işlemleri cihazda HTML5 Canvas üzerinde gerçekleşir; dosyalar sunucuya gönderilmez. Performans için yüklenen görsellerin uzun kenarı en fazla 1400 piksele ölçeklenir; PNG bu çalışma çözünürlüğünden üretilir. JPEG, mevcut oturumda yüklenen orijinal dosyayı tam piksel boyutunda yeniden işler. Boyutlandırma indirme sırasında uygulanır; en uzun kenar 8192 ve toplam 24 milyon piksel sınırı vardır. Kaydedilmiş çalışmalar orijinal büyük dosyayı saklamaz. Vitrindeki 18 işlemde kullanıcının kendi çekimi olarak sağladığı 18 farklı fotoğraf kullanılır. Tüm sonuç kanalları Canvas üzerinde hesaplanır; arındırıcı örneğine gösterim için kodla tuz-biber gürültüsü eklenir. Oyun alanında işlemler her zaman orijinal görselden hesaplanır. Arayüz fontları Google Fonts üzerinden yüklenir; çevrimdışı durumda sistem fontları kullanılır.
 
 ## Teknolojiler
 
@@ -55,7 +55,7 @@ Firebase denemesi yalnız çalışma ağacında kalmıştı: Git geçmişi `git 
 
 ## Temalar ve ses
 
-Koyu, turkuaz açık ve beşinci tema düğmesi basışında onay isteyen kaos modu bulunur. Kaos uyarısı kabul edilmeden renk animasyonu ve müzik başlamaz. Hareket azaltma tercihi animasyonlarda dikkate alınır. TV kadranı cızırtı, kutu/CD sesleri ve Bailando için ortak ses düzeyini ayarlar; sıfırda ses kapanır. Kaosta mekanik sesler ve cızırtı kapatılır. Tarayıcı ses için kullanıcı etkileşimi isteyebilir.
+Koyu ve turkuaz açık tema bulunur. TV kadranı tarayıcıda üretilen cızırtının ses düzeyini ayarlar; sıfırda ses kapanır. Tarayıcı ses için kullanıcı etkileşimi isteyebilir. Kaos modu, müzik, GIF ve mekanik ses efektleri kaldırılmıştır.
 
 ## Test ve teslim
 
@@ -63,3 +63,5 @@ Harici tarayıcı dayanıklılık raporu: [1 Kasım 2026 raporu](docs/testing/20
 
 Teslim bağlantıları ve açıklama: [Teslim notu](docs/SUBMISSION.md).
 Görsel/ses kaynaklarının izin durumu: [Medya kaynakları](docs/MEDIA_SOURCES.md).
+
+2 Kasım 2026 mobil kontrolü: 390 ve 320 piksel tarayıcı viewportlarında ana sayfa/oyun alanı, açık tema, kayıt penceresi ve yüzdeyle kırpma kontrol edildi; yatay sayfa taşması görülmedi. Bu gerçek telefon/dokunma testi değildir. Oyun alanına geçilince TV ses kaynağı durdurulur; ana sayfaya dönüşte kadrandaki seviye ile yeniden başlar. Kırpma disk değildir; orijinal dosya mevcutsa orijinal çözünürlüğe uygulanır.
