@@ -467,5 +467,9 @@
   "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "Demonstração educativa: os filtros são fixos e a rede não foi treinada. Convolução, ReLU, agrupamento, achatamento e Softmax com pesos de exemplo são calculados; as pontuações A/B/C não representam um classificador de animais.",
   "Görüntü okuma gösterimi": "Visualização de leitura da imagem",
   "RGB piksel taraması": "Varredura de pixels RGB",
-  "CNN işleyişi": "Funcionamento da CNN"
+  "CNN işleyişi": "Funcionamento da CNN",
+  "Kontrast germe: açık": "Expansão de contraste: ativada",
+  "Kontrast germe: kapalı": "Expansão de contraste: desativada",
+  "Sınırları değiştirmek işlemi kendiliğinden açmaz. Kontrast germe açıkken alt sınırın altındaki değerler siyaha, üst sınırın üstündekiler beyaza kırpılır; uçlarda tepe oluşması normaldir.": "Alterar os limites não ativa a operação automaticamente. Com a expansão de contraste ativa, os valores abaixo do limite inferior são cortados para preto e os acima do superior para branco; picos nos extremos são normais.",
+  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "A escala vertical segue a barra mais alta; um pico alto pode fazer as outras barras parecerem menores."
 }

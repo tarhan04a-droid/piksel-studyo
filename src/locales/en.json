@@ -467,5 +467,9 @@
   "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "Educational demonstration: filters are fixed and the network is untrained. Convolution, ReLU, pooling, flatten and Softmax with example weights are actually computed; A/B/C scores do not represent an animal classifier.",
   "Görüntü okuma gösterimi": "Image reading view",
   "RGB piksel taraması": "RGB pixel scan",
-  "CNN işleyişi": "CNN walkthrough"
+  "CNN işleyişi": "CNN walkthrough",
+  "Kontrast germe: açık": "Contrast stretching: on",
+  "Kontrast germe: kapalı": "Contrast stretching: off",
+  "Sınırları değiştirmek işlemi kendiliğinden açmaz. Kontrast germe açıkken alt sınırın altındaki değerler siyaha, üst sınırın üstündekiler beyaza kırpılır; uçlarda tepe oluşması normaldir.": "Changing the limits does not automatically enable the operation. When contrast stretching is on, values below the lower limit are clipped to black and those above the upper limit to white; peaks at the ends are normal.",
+  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "The vertical scale follows the tallest bar; a high peak can make other bars appear shorter."
 }

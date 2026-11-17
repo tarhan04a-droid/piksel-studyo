@@ -467,5 +467,9 @@
   "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "عرض تعليمي: المرشحات ثابتة والشبكة غير مدرّبة. تُحسب فعليًا عمليات الالتفاف وReLU والتجميع والتسطيح وSoftmax بأوزان تجريبية؛ ولا تمثل درجات A/B/C مصنّفًا للحيوانات.",
   "Görüntü okuma gösterimi": "عرض قراءة الصورة",
   "RGB piksel taraması": "مسح بكسلات RGB",
-  "CNN işleyişi": "آلية عمل الشبكة الالتفافية"
+  "CNN işleyişi": "آلية عمل الشبكة الالتفافية",
+  "Kontrast germe: açık": "تمديد التباين: مفعّل",
+  "Kontrast germe: kapalı": "تمديد التباين: معطّل",
+  "Sınırları değiştirmek işlemi kendiliğinden açmaz. Kontrast germe açıkken alt sınırın altındaki değerler siyaha, üst sınırın üstündekiler beyaza kırpılır; uçlarda tepe oluşması normaldir.": "تغيير الحدود لا يفعّل العملية تلقائيًا. عند تفعيل تمديد التباين، تُقصّ القيم دون الحد الأدنى إلى الأسود وفوق الحد الأعلى إلى الأبيض؛ ومن الطبيعي ظهور قمم عند الطرفين.",
+  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "يتغير المقياس الرأسي وفق أعلى عمود؛ وقد تجعل قمة مرتفعة الأعمدة الأخرى تبدو أقصر."
 }
