@@ -1,3 +1,5 @@
+import AdvancedCnn from './AdvancedCnn';
+import {useQuizCompleted} from './quizProgress';
 import {drawCnnFrames} from './cnnGif';
 import {useEffect,useMemo,useRef,useState} from 'react';
 import {getLocale,t,useLanguage} from './i18n';
@@ -8,7 +10,7 @@ const descriptions=['Üretilmiş zebra fotoğrafı, hesaplama için 32 × 32 gri
 function conv(map:MapData,kernel:number[]):MapData{const size=map.size-2,values:number[]=[];for(let y=0;y<size;y++)for(let x=0;x<size;x++){let sum=0;for(let ky=0;ky<3;ky++)for(let kx=0;kx<3;kx++)sum+=map.values[(y+ky)*map.size+x+kx]*kernel[ky*3+kx]/4;values.push(Math.max(0,sum))}return{size,values}}
 function pool(map:MapData):MapData{const size=Math.floor(map.size/2),values:number[]=[];for(let y=0;y<size;y++)for(let x=0;x<size;x++)values.push(Math.max(...[0,1].flatMap(dy=>[0,1].map(dx=>map.values[(y*2+dy)*map.size+x*2+dx]))));return{size,values}}
 function FeatureMap({map,progress=1,windowAt,windowSize=3,stride=1}:{map:MapData;progress?:number;windowAt?:number;windowSize?:number;stride?:number}){const canvas=useRef<HTMLCanvasElement>(null);useEffect(()=>{const ctx=canvas.current?.getContext('2d');if(!ctx)return;const im=ctx.createImageData(map.size,map.size),max=Math.max(1,...map.values);for(let i=0;i<map.values.length;i++){const value=i<Math.ceil(progress*map.values.length)?Math.round(map.values[i]/max*255):12;im.data.set([value*.55,value,value*.86,255],i*4)}ctx.putImageData(im,0,0);if(windowAt!==undefined){const output=Math.floor((map.size-windowSize)/stride)+1,index=Math.min(output*output-1,Math.floor(windowAt*output*output));ctx.strokeStyle='#ffcd4a';ctx.lineWidth=.4;ctx.strokeRect((index%output)*stride+.2,Math.floor(index/output)*stride+.2,windowSize-.4,windowSize-.4)}},[map,progress,windowAt,windowSize,stride]);return <canvas ref={canvas} width={map.size} height={map.size} role="img" aria-label={t('Özellik haritası')}/>}
-export default function CnnDemo({showMatrix=false}:{showMatrix?:boolean}){useLanguage();const section=useRef<HTMLElement>(null),[input,setInput]=useState<MapData|null>(null),[error,setError]=useState(false),[frame,setFrame]=useState(0),[playing,setPlaying]=useState(false),[visible,setVisible]=useState(false);
+export default function CnnDemo({showMatrix=false}:{showMatrix?:boolean}){useLanguage();const analysisUnlocked=useQuizCompleted('analysis');const section=useRef<HTMLElement>(null),[input,setInput]=useState<MapData|null>(null),[error,setError]=useState(false),[frame,setFrame]=useState(0),[playing,setPlaying]=useState(false),[visible,setVisible]=useState(false);
  useEffect(()=>{let cancelled=false;const image=new Image();image.onload=()=>{const canvas=document.createElement('canvas');canvas.width=canvas.height=32;const ctx=canvas.getContext('2d');if(!ctx){if(!cancelled)setError(true);return}ctx.drawImage(image,0,0,32,32);const pixels=ctx.getImageData(0,0,32,32).data;if(!cancelled)setInput({size:32,values:Array.from({length:1024},(_,i)=>(pixels[i*4]*.299+pixels[i*4+1]*.587+pixels[i*4+2]*.114)/255)})};image.onerror=()=>{if(!cancelled)setError(true)};image.src='/images/cnn/zebra.webp';return()=>{cancelled=true}},[]);
  useEffect(()=>{const observer=new IntersectionObserver(([entry])=>setVisible(entry.isIntersecting));if(section.current)observer.observe(section.current);return()=>observer.disconnect()},[]);
  const stages=useMemo(()=>{if(!input)return[];const result:MapData[][]=[[input]];let maps=[input];for(let layer=0;layer<3;layer++){maps=kernels.map((kernel,i)=>conv(maps.length===1?maps[0]:maps[i],kernel));result.push(maps);maps=maps.map(pool);result.push(maps)}return result},[input]);
@@ -41,6 +43,7 @@ v = flatten(x)
 h = relu(W1 @ v + bias)
 output = softmax(W2 @ h)
 # fixed demonstration weights, not trained`}</code></pre></div>}
+ {analysisUnlocked?<AdvancedCnn stage={stage} stages={stages} kernels={kernels} flat={flat} dense={dense} probabilities={probabilities}/>:<p>{t('İleri CNN analizi için oyun merkezindeki derin analiz testini tamamla.')}</p>}
  <p className="cnn-note">{t('Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.')}</p>
  </section>;
 }

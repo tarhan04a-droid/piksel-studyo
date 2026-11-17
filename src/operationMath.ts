@@ -1,0 +1,20 @@
+export const operationMath=[
+{name:'Referans',formula:'s(r) = r',detail:'Piksel değerleri değişmeden kalır. Diğer dönüşümleri karşılaştırmak için başlangıçtır.'},
+{name:'Gama',formula:'s = 255 × (r / 255)^γ',detail:'Üstel dönüşüm orta tonları değiştirir. γ=1 özdeşliktir; γ<1 açar, γ>1 koyultur.'},
+{name:'Logaritma',formula:'s = 255 × ln(1 + a × r/255) / ln(1+a)',detail:'Logaritma yüksek değerleri sıkıştırırken koyu tonlar arasındaki farkı görünür kılabilir. a=0 özel durumunda s=r kullanılır.'},
+{name:'Kontrast',formula:'stretch(r) = 255 × (r − low)/(high − low)\ns = (1−α)r + α × stretch(r)',detail:'İki sınır arasındaki ton aralığı genişletilir. Stüdyoda kontrast yüzdesi α ile eski ve gerilmiş değer karıştırılır; sonuç 0–255’e kırpılır.'},
+{name:'Negatif',formula:'s = 255 − r',detail:'Her kanalda açık ve koyu değerler tersine döner. Dönüşüm iki kez uygulanırsa ilk değer geri gelir.'},
+{name:'Gri seviye',formula:'Y = 0.299R + 0.587G + 0.114B\ns_c = (1−α)c + αY',detail:'Renk kanallarından ağırlıklı parlaklık hesaplanır. Gri seviye miktarı α, renkle gri sonucu karıştırır.'},
+{name:'Siyah beyaz',formula:'s = 255 if Y ≥ threshold else 0',detail:'Eşikleme, parlaklığı yalnız iki sınıfa ayırır. Eşik değiştiğinde sınıf sınırı değişir.'},
+{name:'RGB',formula:'R′ = R × gain_R / 100\nG′ = G × gain_G / 100\nB′ = B × gain_B / 100',detail:'Kanallar ayrı katsayılarla çarpılır. Yalnız göster seçeneği diğer kanalları sıfırlar.'},
+{name:'HSV',formula:'V = max(R,G,B) / 255\nS = (max−min)/max   [max=0 ise S=0]\nH′ = (H + ΔH) mod 360',detail:'Ton çevrimseldir; doygunluk ve parlaklık katsayılarla değiştirilir ve geçerli aralığa sınırlandırılır. Sonuç RGB’ye geri çevrilir.'},
+{name:'Işık bandı',formula:'inside = low ≤ Y ≤ high\nmask = 255 if inside else 0',detail:'Belirli yoğunluk aralığı seçilir. Maske diğer bölgeleri siyah yapar; vurgulama seçeneği diğer bölgeleri korur.'},
+{name:'Medyan',formula:'s(x,y) = median(N₃×₃(x,y))',detail:'Komşuluk sıralanır, ortadaki değer seçilir. Noktasal uç değerleri azaltabilir; bir doğrusal ortalama değildir.'},
+{name:'Ortalama',formula:'s(x,y) = (1/9) × Σᵢ₌₋₁¹ Σⱼ₌₋₁¹ f(x+i,y+j)',detail:'3×3 komşuluğun bütün pikselleri eşit ağırlıklıdır. Gürültüyü yumuşatırken kenarları da bulanıklaştırabilir.'},
+{name:'Gauss',formula:'K = (1/16) × [[1,2,1],[2,4,2],[1,2,1]]\ns = Σ Kᵢⱼ f(x+i,y+j)',detail:'Stüdyonun 3×3 filtresinde yakın komşular daha yüksek ağırlık alır. Katsayıların toplamı 1’dir.'},
+{name:'Kalınlaştırma',formula:'s(x,y) = max(N₃×₃(x,y))',detail:'Gri seviye genişletme yerel maksimumu seçer; açık bölgeler büyür. Renkli görüntüde her kanala ayrı uygulanır.'},
+{name:'İnceltme',formula:'s(x,y) = min(N₃×₃(x,y))',detail:'Bu araç gri seviye aşındırmadır; yerel minimum açık bölgeleri daraltır. İskelet çıkaran topolojik inceltme algoritması değildir.'},
+{name:'Bölütleme',formula:'d_H = min(|H−H₀|, 360−|H−H₀|)\nmask = 255 if d_H < 25 and S > 0.2 else 0',detail:'Stüdyonun renk maskesi dairesel ton uzaklığını kullanır. Dokunarak seçim bağlılık ve renk uzaklığına; nesne modeli öğrenilmiş maske tahminine dayanır. Üç yöntem aynı formül değildir.'},
+{name:'Otomatik',formula:'settings = rules(histogram, percentiles, neutral colors, impulse noise)',detail:'Tek formül yerine ölçümlerden ayar seçen kurallar vardır. Gama, kontrast, renk dengesi ve gerekirse medyan birlikte uygulanabilir.'},
+{name:'Histogram eşitleme',formula:'CDF(k) = Σⱼ₌₀ᵏ hist(j) / N\nT(k) = 255 × (CDF(k)−CDF_min)/(1−CDF_min)',detail:'Stüdyo ilk dolu seviyenin kümülatif payını çıkarır. Testteki round(7·CDF) örneği farklı bir eşleme tanımıdır; sonuçlar aynı olmak zorunda değildir. Sabit görüntüde payda sıfırsa dönüşüm atlanır.'}
+];

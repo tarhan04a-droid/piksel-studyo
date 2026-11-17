@@ -1,0 +1,6 @@
+import type {Settings} from './engine';
+import {lazy,Suspense,useState} from 'react';
+import {useQuizCompleted} from './quizProgress';
+import {t,useLanguage} from './i18n';
+const FineMath=lazy(()=>import('./FineMath'));
+export default function StudioFineMath({source,output,settings,processing}:{source:ImageData;output:ImageData;settings:Settings;processing:boolean}){useLanguage();const unlocked=useQuizCompleted('math'),[open,setOpen]=useState(false),[hint,setHint]=useState(false);const requirement=t('Açmak için oyun merkezindeki 10 soruluk matematik testini tamamla.');return <section className="studio-fine-math"><h3>{t('İnce İşlemler')}</h3><div className="fine-math-entry"><button aria-disabled={!unlocked} aria-expanded={unlocked&&open} title={unlocked?t(open?'İnce İşlemleri kapat':'İnce İşlemleri aç'):requirement} onClick={()=>{if(!unlocked)setHint(true);else setOpen(!open)}}>{t(unlocked?(open?'İnce İşlemleri kapat':'İnce İşlemleri aç'):'İnce İşlemler · kilitli')}</button>{!unlocked&&<span className={'fine-lock-tip'+(hint?' visible':'')} role="status">{requirement}</span>}</div>{unlocked&&open&&<Suspense fallback={<p>{t('Görüntü hazırlanıyor…')}</p>}><FineMath source={source} output={output} settings={settings} processing={processing}/></Suspense>}</section>}

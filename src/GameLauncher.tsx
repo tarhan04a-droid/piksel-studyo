@@ -1,0 +1,4 @@
+import {lazy,Suspense,useRef,useState} from 'react';
+import {t,useLanguage} from './i18n';
+const GameCenter=lazy(()=>import('./GameCenter'));
+export default function GameLauncher(){useLanguage();const dialog=useRef<HTMLDialogElement>(null),[open,setOpen]=useState(false);return <><button aria-haspopup="dialog" onClick={()=>{dialog.current?.showModal();setOpen(true)}}>{t('Mini oyunlar')}</button><dialog ref={dialog} className="game-dialog" aria-labelledby="game-dialog-title" onClose={()=>setOpen(false)}><div className="game-dialog-heading"><h2 id="game-dialog-title">{t('Mini oyun merkezi')}</h2><button className="game-dialog-close" aria-label={t('Oyun ekranını kapat')} onClick={()=>dialog.current?.close()}>×</button></div>{open&&<Suspense fallback={<p>{t('Görüntü hazırlanıyor…')}</p>}><GameCenter/></Suspense>}</dialog></>}
