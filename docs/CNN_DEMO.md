@@ -14,3 +14,9 @@ Dosya: `public/images/cnn/zebra.webp`. Yerleşik image_gen aracıyla üretildi; 
 
 Üretim istemi:
 > Generate a single photorealistic square wildlife photograph for an educational convolutional neural network animation input. One zebra in full side profile facing right, centered with its complete body, ears, hooves and tail inside frame. Crisp clearly defined black and white stripes, natural anatomy. Softly blurred simple pale olive savannah and short dry grass background, soft daylight, strong readable subject silhouette, no other animals. Natural wildlife photography, no text, no watermark, no diagrams, no borders. Square composition.
+
+## Kod / matris ve GIF
+
+RGB/CNN seçicisinin yanındaki checkbox sayısal görünümü açar. RGB bölümünde 12 sütun ve 8 satır korunur; mobilde matris kendi içinde yatay kaydırılır. CNN için seçilen aşamanın sayısal matrisi, kanal seçimi, flatten/dense/Softmax vektörü ve açıklayıcı sözde kod gösterilir. Kod tarayıcıda çalıştırılabilir Python değildir; hesaplanan değerler gerçek istemci hesaplarından gelir.
+
+GIF dışa aktarma, mevcut sabit zebra örneğinin 10 aşamasını 30 karelik, 380 × 240 boyutlu, 15 saniyelik döngü olarak çizer. Web Worker içinde RGB332 paletli GIF89a kodlanır; daha küçük kod tabanı için sık LZW clear kodları kullanılır. Bu nedenle iyi sıkıştırılmış GIF kadar küçük değildir (yaklaşık 3 MB). Sayfadaki kontrollerin ekran kaydı değildir; aynı hesaplanan haritalardan üretilmiş özet animasyondur. MP4 bu sürüme dahil değildir. Sekme/gösterim değişiminde worker sonlandırılır ve URL temizlenir. Beş dilde arayüz metinleri eklendi. GIF oynatma, gerçek cihaz davranışı ve yeni arayüz görsel olarak henüz denenmedi; kullanıcı talimatına uygun yalnız derleme/tip kontrolü yapılmıştır.

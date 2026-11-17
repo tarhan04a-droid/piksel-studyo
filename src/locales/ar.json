@@ -471,5 +471,15 @@
   "Kontrast germe: açık": "تمديد التباين: مفعّل",
   "Kontrast germe: kapalı": "تمديد التباين: معطّل",
   "Sınırları değiştirmek işlemi kendiliğinden açmaz. Kontrast germe açıkken alt sınırın altındaki değerler siyaha, üst sınırın üstündekiler beyaza kırpılır; uçlarda tepe oluşması normaldir.": "تغيير الحدود لا يفعّل العملية تلقائيًا. عند تفعيل تمديد التباين، تُقصّ القيم دون الحد الأدنى إلى الأسود وفوق الحد الأعلى إلى الأبيض؛ ومن الطبيعي ظهور قمم عند الطرفين.",
-  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "يتغير المقياس الرأسي وفق أعلى عمود؛ وقد تجعل قمة مرتفعة الأعمدة الأخرى تبدو أقصر."
+  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "يتغير المقياس الرأسي وفق أعلى عمود؛ وقد تجعل قمة مرتفعة الأعمدة الأخرى تبدو أقصر.",
+  "Kod / matris göster": "عرض الكود / المصفوفة",
+  "Kod / matris": "الكود / المصفوفة",
+  "RGB piksel matrisi": "مصفوفة بكسلات RGB",
+  "Her hücre [R, G, B] değerlerini gösterir. Çerçeve, animasyonda okunan pikseli izler.": "تعرض كل خلية قيم [R, G, B]. يتتبع الإطار البكسل الذي تتم قراءته في الرسوم المتحركة.",
+  "Özellik kanalı": "قناة السمات",
+  "GIF hazırlanıyor…": "جارٍ إعداد GIF…",
+  "Animasyonu GIF olarak hazırla": "إعداد الرسوم المتحركة بصيغة GIF",
+  "GIF indir": "تنزيل GIF",
+  "GIF hazırlanamadı. Tekrar dene.": "تعذّر إعداد GIF. حاول مجددًا.",
+  "Eğitilmemiş örnek ağ · A/B/C temsili": "شبكة تجريبية غير مدرّبة · A/B/C توضيحية"
 }

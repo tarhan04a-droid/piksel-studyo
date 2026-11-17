@@ -2,7 +2,7 @@ import {t,trNode,getLocale,useLanguage} from './i18n';
 import {useEffect,useRef,useState} from 'react';
 const columns=12,rows=8,total=columns*rows;
 const fmt=(n:number)=>n.toLocaleString(getLocale());
-export default function PixelScanner(){useLanguage();
+export default function PixelScanner({showMatrix=false}:{showMatrix?:boolean}){useLanguage();
  const section=useRef<HTMLElement>(null);
  const [pixels,setPixels]=useState<number[][]>([]),[index,setIndex]=useState(0),[playing,setPlaying]=useState(false),[visible,setVisible]=useState(false);
  useEffect(()=>{
@@ -25,5 +25,9 @@ export default function PixelScanner(){useLanguage();
    <div className="pixel-scan-actions"><button disabled={!pixels.length} onClick={()=>{if(index===total-1)setIndex(0);setPlaying(!playing)}}>{trNode(playing?'Duraklat':index===total-1?'Tekrar oynat':'Başlat')}</button><button onClick={()=>{setPlaying(false);setIndex(0)}}>{t("Başa dön")}</button></div>
    <span className="pixel-progress" role="status">{trNode(index===total-1?'Tarama tamamlandı':playing?'Pikseller okunuyor':'Tarama duraklatıldı')}{t(" · ")}{trNode(fmt(index+1))}{t(" / ")}{trNode(fmt(total))}</span>
   </div></div>
+  {showMatrix&&<div className="machine-matrix"><h3>{t('RGB piksel matrisi')}</h3><p>{t('Her hücre [R, G, B] değerlerini gösterir. Çerçeve, animasyonda okunan pikseli izler.')}</p><div className="rgb-matrix-scroll"><div className="rgb-number-matrix" dir="ltr">{pixels.map((pixel,i)=><span key={i} className={i===index?'current':''}>{pixel.join(', ')}</span>)}</div></div><pre dir="ltr"><code>{`// RGB · row-major
+row = ${Math.floor(index/columns)}; column = ${index%columns};
+pixel = [${rgb.join(', ')}];
+index = row * ${columns} + column;`}</code></pre></div>}
  </section>
 }

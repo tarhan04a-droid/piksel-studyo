@@ -471,5 +471,15 @@
   "Kontrast germe: açık": "Contrast stretching: on",
   "Kontrast germe: kapalı": "Contrast stretching: off",
   "Sınırları değiştirmek işlemi kendiliğinden açmaz. Kontrast germe açıkken alt sınırın altındaki değerler siyaha, üst sınırın üstündekiler beyaza kırpılır; uçlarda tepe oluşması normaldir.": "Changing the limits does not automatically enable the operation. When contrast stretching is on, values below the lower limit are clipped to black and those above the upper limit to white; peaks at the ends are normal.",
-  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "The vertical scale follows the tallest bar; a high peak can make other bars appear shorter."
+  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "The vertical scale follows the tallest bar; a high peak can make other bars appear shorter.",
+  "Kod / matris göster": "Show code / matrix",
+  "Kod / matris": "Code / matrix",
+  "RGB piksel matrisi": "RGB pixel matrix",
+  "Her hücre [R, G, B] değerlerini gösterir. Çerçeve, animasyonda okunan pikseli izler.": "Each cell shows [R, G, B] values. The outline follows the pixel being read in the animation.",
+  "Özellik kanalı": "Feature channel",
+  "GIF hazırlanıyor…": "Preparing GIF…",
+  "Animasyonu GIF olarak hazırla": "Prepare animation as GIF",
+  "GIF indir": "Download GIF",
+  "GIF hazırlanamadı. Tekrar dene.": "Could not prepare the GIF. Try again.",
+  "Eğitilmemiş örnek ağ · A/B/C temsili": "Untrained demo network · A/B/C illustrative"
 }

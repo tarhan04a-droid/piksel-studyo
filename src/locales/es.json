@@ -471,5 +471,15 @@
   "Kontrast germe: açık": "Estiramiento del contraste: activado",
   "Kontrast germe: kapalı": "Estiramiento del contraste: desactivado",
   "Sınırları değiştirmek işlemi kendiliğinden açmaz. Kontrast germe açıkken alt sınırın altındaki değerler siyaha, üst sınırın üstündekiler beyaza kırpılır; uçlarda tepe oluşması normaldir.": "Cambiar los límites no activa la operación automáticamente. Al activar el estiramiento, los valores inferiores al límite bajo se recortan a negro y los superiores al alto a blanco; los picos en los extremos son normales.",
-  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "La escala vertical se ajusta a la barra más alta; un pico alto puede hacer que las demás parezcan más cortas."
+  "Dikey ölçek en yüksek sütuna göre değişir; yüksek bir tepe diğer sütunları daha kısa gösterebilir.": "La escala vertical se ajusta a la barra más alta; un pico alto puede hacer que las demás parezcan más cortas.",
+  "Kod / matris göster": "Mostrar código / matriz",
+  "Kod / matris": "Código / matriz",
+  "RGB piksel matrisi": "Matriz de píxeles RGB",
+  "Her hücre [R, G, B] değerlerini gösterir. Çerçeve, animasyonda okunan pikseli izler.": "Cada celda muestra los valores [R, G, B]. El marco sigue el píxel leído en la animación.",
+  "Özellik kanalı": "Canal de características",
+  "GIF hazırlanıyor…": "Preparando GIF…",
+  "Animasyonu GIF olarak hazırla": "Preparar animación como GIF",
+  "GIF indir": "Descargar GIF",
+  "GIF hazırlanamadı. Tekrar dene.": "No se pudo preparar el GIF. Inténtalo de nuevo.",
+  "Eğitilmemiş örnek ağ · A/B/C temsili": "Red de ejemplo sin entrenar · A/B/C ilustrativos"
 }
