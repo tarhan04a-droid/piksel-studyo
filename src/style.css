@@ -238,3 +238,5 @@ html[data-theme="light"] body[data-scene] .mixer-console button.solo-button.chos
 @media(max-width:700px){header .language-picker{grid-row:3;justify-self:start;margin-inline-start:0}header .header-actions{grid-row:3;grid-column:1;justify-self:end}header nav button{white-space:normal!important}.language-picker>span{display:none}.language-picker select{max-width:135px}.cover strong{font-size:clamp(10px,3.2vw,17px)}html[dir='rtl'] .intro h1{font-size:clamp(28px,8vw,44px)}}
 
 @media(max-width:700px){header{grid-template-columns:minmax(0,1fr) auto}header .brand,header nav{grid-column:1 / -1}header .language-picker{grid-column:1;grid-row:3;max-width:100%;min-width:0}header .language-picker select{width:100%;min-width:0}header .header-actions{grid-column:2;grid-row:3;max-width:150px}header .header-actions .account-trigger{max-width:150px;white-space:normal}html[dir='rtl'] .photo-queue-cards{text-align:start}}
+
+.tester-name,.tester-stars{direction:ltr;unicode-bidi:isolate}.tester-stars{flex-direction:row}.tester-name{text-align:left;overflow-wrap:anywhere;font-weight:inherit}.tester-comment{unicode-bidi:plaintext}
