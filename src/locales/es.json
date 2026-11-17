@@ -544,5 +544,22 @@
   "Bu işlem özellikle telefonda zaman alabilir. Bölümü kapatarak durdurabilirsin.": "Puede tardar, sobre todo en móviles. Cierra la sección para detenerlo.",
   "Model hatalı maske üretebilir; kenarları kontrol et. Çıktı çalışma çözünürlüğündedir. Şeffaflaştırılan alanın arkasını yeniden üretmez.": "El modelo puede producir una máscara imprecisa; revisa los bordes. La salida usa la resolución de trabajo y no reconstruye zonas ocultas.",
   "Nesneye ilk dokunuş modeli yükler ve seçimi başlatır. Yeşil nokta seçime ekler, kırmızı nokta seçimden çıkarır.": "El primer toque carga el modelo e inicia la selección. Los puntos verdes incluyen regiones y los rojos las excluyen.",
-  "Fotoğraf modele hazırlanıyor…": "Preparando la foto para el modelo…"
+  "Fotoğraf modele hazırlanıyor…": "Preparando la foto para el modelo…",
+  "Renk maskesini, nesne seçimini ve aynı fotoğrafta arka planın kaldırılmasını karşılaştır.": "Compara la máscara de color, la selección del objeto y la eliminación del fondo en la misma foto.",
+  "Nesne seçimi · Dağ silueti": "Selección de objeto · Silueta de montaña",
+  "Arka plan kaldırma · Şeffaf": "Eliminación del fondo · Transparente",
+  "Işık, kontrast, renk dengesi ve noktasal gürültüyü birlikte değerlendirerek uygun ayarları seçer.": "Evalúa luz, contraste, balance de color y ruido impulsivo para elegir los ajustes adecuados.",
+  "Otomatik analiz · yapılan işlemler": "Análisis automático · ajustes aplicados",
+  "Örneklenen parlaklık ortalaması": "Brillo medio muestreado",
+  "Ton aralığı": "Rango tonal",
+  "Görünür piksel bulunamadı; ayarlar korundu.": "No se encontraron píxeles visibles; se conservaron los ajustes.",
+  "Nötr bölgelerden hafif renk dengesi uygulandı.": "Se aplicó un balance de color suave a partir de zonas neutras.",
+  "Koyu orta tonlar kontrollü biçimde açıldı.": "Se aclararon suavemente los tonos medios oscuros.",
+  "Aydınlık orta tonlar kontrollü biçimde dengelendi.": "Se equilibraron suavemente los tonos medios claros.",
+  "Yüzdelik ton sınırlarıyla hafif kontrast germe uygulandı.": "Se aplicó un estiramiento suave del contraste con límites percentiles.",
+  "Düşük renk doygunluğu hafifçe artırıldı.": "Se aumentó ligeramente la baja saturación del color.",
+  "Aşırı renk doygunluğu hafifçe azaltıldı.": "Se redujo ligeramente la saturación excesiva del color.",
+  "Belirgin noktasal gürültü için medyan temizleme seçildi.": "Se eligió el filtro de mediana para el ruido impulsivo evidente.",
+  "Uç tonlarda kayıp olabilir; otomatik ayar kaybolmuş ayrıntıyı geri getirmez.": "Los tonos extremos pueden estar recortados; los ajustes automáticos no recuperan detalles perdidos.",
+  "Belirgin düzeltme gerektirmeyen görüntüde doğal ayarlar korundu.": "Se conservaron los ajustes naturales porque no se necesitaba una corrección evidente."
 }

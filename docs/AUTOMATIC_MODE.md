@@ -1,0 +1,9 @@
+# Geliştirilmiş otomatik mod
+
+Tek fotoğraf, otomatik diskin TV gösterimi ve beşli toplu işleme aynı `analyzeAutomatic` / `automaticSettings` yordamını kullanır. Her fotoğraf ayrı analiz edilir; kullanıcı fotoğrafındaki ışık/renk özellikleri diğer kartlara kopyalanmaz. Sınıflandırıcı veya öğrenilmiş restorasyon modeli kullanılmaz; sayısal, muhafazakâr sezgisel kurallardır. Tam otomatik estetik doğruluk garantisi değildir.
+
+En fazla yaklaşık 60 bin görünür piksel düzenli 2B örneklenir. Alpha <128 pikseller yok sayılır. Parlaklık histogramı, ortalama/medyan, %1–%99 ton sınırları, karanlık/parlak piksel oranı ve HSV doygunluğu hesaplanır. Yeterli nötr orta ton varsa RGB kazançları en fazla ±%6 değiştirilir. Medyan parlaklık kontrollü gama ile dengelenir (0.78–1.22); güçlü uç ton birikimi ters yöndeki düzeltmeyi engeller. Kontrast gerekirse gama sonrası yaklaşık yüzdelik sınırlarla yalnız %20–35 oranında gerilir. Çok dar düz renk dağılımına kontrast uygulanmaz. Düşük/yüksek doygunlukta küçük ayar yapılır. Ağır histogram eşitleme, nesne maskesi, ikili eşikleme veya arka plan silme otomatik seçilmez.
+
+Yaklaşık 12 bin komşulukta, düzgün çevreden kuvvetle ayrılan aşırı siyah/beyaz noktalar aranır. Yeterli yoğunluk varsa medyan seçilir; yumuşatma varsayılan olarak açılmaz. Bu dedektör her tür gürültüyü ayıramaz ve gerçek ince noktalarla karışabilir; kullanıcı sonucu kontrol edip ayarı değiştirebilir. Kırpılmış ayrıntının geri getirilemeyeceği açıkça yazılır. Analiz raporu seçilen ayarlar elle değiştirilene kadar görünür; görüntüde seçilmiş işlemler mevcut worker işlem hattında çalışır.
+
+Derleme ve TypeScript kontrolü yapıldı. İşlev testi, kalite karşılaştırması ve mobil performans ölçümü için açık izin olmadığından bu doğrulamalar yapılmadı. Yeni davranışın tüm fotoğraflarda daha iyi sonuç verdiği iddia edilmez.

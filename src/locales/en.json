@@ -544,5 +544,22 @@
   "Bu işlem özellikle telefonda zaman alabilir. Bölümü kapatarak durdurabilirsin.": "This can take time, especially on phones. Close the section to stop it.",
   "Model hatalı maske üretebilir; kenarları kontrol et. Çıktı çalışma çözünürlüğündedir. Şeffaflaştırılan alanın arkasını yeniden üretmez.": "The model may produce an inaccurate mask; check the edges. Output uses the working resolution. Hidden areas are not reconstructed.",
   "Nesneye ilk dokunuş modeli yükler ve seçimi başlatır. Yeşil nokta seçime ekler, kırmızı nokta seçimden çıkarır.": "Your first tap loads the model and starts selection. Green points include regions; red points exclude them.",
-  "Fotoğraf modele hazırlanıyor…": "Preparing photo for the model…"
+  "Fotoğraf modele hazırlanıyor…": "Preparing photo for the model…",
+  "Renk maskesini, nesne seçimini ve aynı fotoğrafta arka planın kaldırılmasını karşılaştır.": "Compare the color mask, object selection and background removal on the same photo.",
+  "Nesne seçimi · Dağ silueti": "Object selection · Mountain silhouette",
+  "Arka plan kaldırma · Şeffaf": "Background removal · Transparent",
+  "Işık, kontrast, renk dengesi ve noktasal gürültüyü birlikte değerlendirerek uygun ayarları seçer.": "Evaluates light, contrast, color balance and impulse noise together to select suitable settings.",
+  "Otomatik analiz · yapılan işlemler": "Automatic analysis · applied adjustments",
+  "Örneklenen parlaklık ortalaması": "Sampled mean brightness",
+  "Ton aralığı": "Tonal range",
+  "Görünür piksel bulunamadı; ayarlar korundu.": "No visible pixels found; settings preserved.",
+  "Nötr bölgelerden hafif renk dengesi uygulandı.": "Applied gentle color balancing using neutral regions.",
+  "Koyu orta tonlar kontrollü biçimde açıldı.": "Dark midtones were gently brightened.",
+  "Aydınlık orta tonlar kontrollü biçimde dengelendi.": "Bright midtones were gently balanced.",
+  "Yüzdelik ton sınırlarıyla hafif kontrast germe uygulandı.": "Applied gentle contrast stretching using percentile limits.",
+  "Düşük renk doygunluğu hafifçe artırıldı.": "Low color saturation was slightly increased.",
+  "Aşırı renk doygunluğu hafifçe azaltıldı.": "Excessive color saturation was slightly reduced.",
+  "Belirgin noktasal gürültü için medyan temizleme seçildi.": "Selected median filtering for clear impulse noise.",
+  "Uç tonlarda kayıp olabilir; otomatik ayar kaybolmuş ayrıntıyı geri getirmez.": "Extreme tones may be clipped; automatic adjustments cannot restore missing detail.",
+  "Belirgin düzeltme gerektirmeyen görüntüde doğal ayarlar korundu.": "Natural settings were preserved because no clear correction was needed."
 }

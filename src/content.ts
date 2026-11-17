@@ -17,8 +17,8 @@ export const techniques:Demo[]=[
 {name:'GAUSS',sub:"Yakın piksellere daha fazla ağırlık vererek yumuşatır; kenar geçişlerinin yumuşadığını görürsün.",settings:{smoothing:'gauss'},image:'/images/demos/personal/13.jpg',labels:['Orijinal · Park ve şehir', 'Gauss · Yumuşatma', 'Yakın plan · Orijinal doku', 'Yakın plan · Yumuşayan doku'],frames:[{},{smoothing:'gauss'},{},{smoothing:'gauss'}]},
 {name:'KALINLAŞTIR',sub:"Açık bölgeleri genişletir; ince koyu detayların daraldığını görürsün.",settings:{morphology:'dilate'},image:'/images/demos/personal/14.jpg',labels:['Orijinal · Bulutlu yol', 'Genişletme · Kalınlaştırma']},
 {name:'İNCELT',sub:"Açık bölgeleri küçültür; koyu bölgelerin genişlediğini görürsün.",settings:{morphology:'erode'},image:'/images/demos/personal/15.jpg',labels:['Orijinal · Bulutlar', 'Aşındırma · İnceltme']},
-{name:'BÖLÜTLEME',sub:"Seçtiğin renge yakın bölgeleri beyaz, gerisini siyah yapar.",settings:{segment:true,hue:270},image:'/images/demos/personal/16.jpg',labels:['Orijinal · Akşam gökyüzü', 'Renk maskesi · Mor tonlar']},
-{name:'OTOMATİK',sub:"Işık dağılımına göre ayar seçer; fotoğrafın otomatik düzenlenmiş halini görürsün.",settings:{},image:'/images/demos/personal/17.jpg',labels:['Orijinal · Gece şehri', 'Otomatik · İyileştirme']},
+{name:'BÖLÜTLEME',sub:"Renk maskesini, nesne seçimini ve aynı fotoğrafta arka planın kaldırılmasını karşılaştır.",settings:{segment:true,hue:270},image:'/images/demos/personal/16.jpg',labels:['Orijinal · Akşam gökyüzü', 'Renk maskesi · Mor tonlar', 'Nesne seçimi · Dağ silueti', 'Arka plan kaldırma · Şeffaf']},
+{name:'OTOMATİK',sub:"Işık, kontrast, renk dengesi ve noktasal gürültüyü birlikte değerlendirerek uygun ayarları seçer.",settings:{},image:'/images/demos/personal/17.jpg',labels:['Orijinal · Gece şehri', 'Otomatik · İyileştirme']},
 {name:'HİSTOGRAM EŞİTLEME',sub:'Parlaklık dağılımını yayar; düşük kontrastlı fotoğrafta ton farklarının belirginleştiğini görürsün.',settings:{equalize:true},image:'/images/demos/personal/18.jpg',labels:['Orijinal · Camdan gece', 'Histogram eşitleme · Ton dağılımı']},
 ];
 

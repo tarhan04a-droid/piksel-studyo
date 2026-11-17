@@ -19,3 +19,7 @@ En fazla 32 nokta, geri alma/temizleme, maske ters çevirme ve şeffaf PNG vard�
 Model kaynağı ve API örneği: https://huggingface.co/Xenova/slimsam-77-uniform
 
 Model sürümü `5850ab45f587c112167512ffef949107115e26a0` olarak sabittir. Model deposu metadata'sında `vision_encoder_quantized.onnx` ve `prompt_encoder_mask_decoder_quantized.onnx` dosyalarının varlığı doğrulandı; model indirilip çalıştırılmadı.
+
+## Bölütleme diskinin fotoğraflı gösterimi
+
+Kullanıcının mevcut `public/images/demos/personal/16.jpg` gün batımı fotoğrafı korunur. Kanallar: orijinal, önceki mor renk maskesi, dağ ön planı seçimi (yeşil vurgu), gökyüzü şeffaflaştırılmış ön plan. Ek fotoğraf veya zebra kullanılmaz. Bu sabit fotoğraf için örnek maske, alt kenara bağlı ve parlaklığı 58'i aşmayan alanların dört komşulu büyütülmesiyle hesaplanır; bir SAM model tahmini olarak sunulmaz. Fotoğrafın RGB pikselleri korunur, son kanalda arka plan alpha'sı sıfırlanır. Dama deseni TV'nin arka zeminidir, PNG piksellerine basılmaz. Kontrol araçlarındaki öğrenilmiş nesne seçimi ve renk tabanlı seçim ayrı çalışmayı sürdürür.
