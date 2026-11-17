@@ -464,5 +464,8 @@
   "Üç haritadaki 12 değer, sırası korunarak tek vektöre açılır.": "The 12 values from three maps are flattened into one vector, preserving their order.",
   "12 değer, örnek ağırlıklarla 6 nörona bağlanır. Bu ağırlıklar eğitilmemiştir.": "12 values connect to 6 neurons using example weights. These weights have not been trained.",
   "Örnek çıkış skorları, toplamı 1 olan değerlere dönüştürülür. Bunlar hayvan tanıma olasılıkları değildir.": "Example output scores are converted to values summing to 1. They are not animal recognition probabilities.",
-  "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "Educational demonstration: filters are fixed and the network is untrained. Convolution, ReLU, pooling, flatten and Softmax with example weights are actually computed; A/B/C scores do not represent an animal classifier."
+  "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "Educational demonstration: filters are fixed and the network is untrained. Convolution, ReLU, pooling, flatten and Softmax with example weights are actually computed; A/B/C scores do not represent an animal classifier.",
+  "Görüntü okuma gösterimi": "Image reading view",
+  "RGB piksel taraması": "RGB pixel scan",
+  "CNN işleyişi": "CNN walkthrough"
 }

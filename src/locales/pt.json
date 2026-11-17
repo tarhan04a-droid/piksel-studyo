@@ -464,5 +464,8 @@
   "Üç haritadaki 12 değer, sırası korunarak tek vektöre açılır.": "Os 12 valores dos três mapas são achatados em um vetor, preservando a ordem.",
   "12 değer, örnek ağırlıklarla 6 nörona bağlanır. Bu ağırlıklar eğitilmemiştir.": "Os 12 valores conectam-se a 6 neurônios com pesos de exemplo. Esses pesos não foram treinados.",
   "Örnek çıkış skorları, toplamı 1 olan değerlere dönüştürülür. Bunlar hayvan tanıma olasılıkları değildir.": "As pontuações de exemplo são convertidas em valores cuja soma é 1. Não são probabilidades de reconhecimento de animais.",
-  "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "Demonstração educativa: os filtros são fixos e a rede não foi treinada. Convolução, ReLU, agrupamento, achatamento e Softmax com pesos de exemplo são calculados; as pontuações A/B/C não representam um classificador de animais."
+  "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "Demonstração educativa: os filtros são fixos e a rede não foi treinada. Convolução, ReLU, agrupamento, achatamento e Softmax com pesos de exemplo são calculados; as pontuações A/B/C não representam um classificador de animais.",
+  "Görüntü okuma gösterimi": "Visualização de leitura da imagem",
+  "RGB piksel taraması": "Varredura de pixels RGB",
+  "CNN işleyişi": "Funcionamento da CNN"
 }

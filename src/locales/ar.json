@@ -464,5 +464,8 @@
   "Üç haritadaki 12 değer, sırası korunarak tek vektöre açılır.": "تُسطّح القيم الاثنتا عشرة من الخرائط الثلاث في متجه واحد مع الحفاظ على ترتيبها.",
   "12 değer, örnek ağırlıklarla 6 nörona bağlanır. Bu ağırlıklar eğitilmemiştir.": "تتصل 12 قيمة بستة عصبونات باستخدام أوزان تجريبية غير مدرّبة.",
   "Örnek çıkış skorları, toplamı 1 olan değerlere dönüştürülür. Bunlar hayvan tanıma olasılıkları değildir.": "تُحوّل درجات الخرج التجريبية إلى قيم مجموعها 1. وهي ليست احتمالات للتعرّف على الحيوانات.",
-  "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "عرض تعليمي: المرشحات ثابتة والشبكة غير مدرّبة. تُحسب فعليًا عمليات الالتفاف وReLU والتجميع والتسطيح وSoftmax بأوزان تجريبية؛ ولا تمثل درجات A/B/C مصنّفًا للحيوانات."
+  "Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.": "عرض تعليمي: المرشحات ثابتة والشبكة غير مدرّبة. تُحسب فعليًا عمليات الالتفاف وReLU والتجميع والتسطيح وSoftmax بأوزان تجريبية؛ ولا تمثل درجات A/B/C مصنّفًا للحيوانات.",
+  "Görüntü okuma gösterimi": "عرض قراءة الصورة",
+  "RGB piksel taraması": "مسح بكسلات RGB",
+  "CNN işleyişi": "آلية عمل الشبكة الالتفافية"
 }
