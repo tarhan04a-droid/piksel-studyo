@@ -4,7 +4,42 @@ export function stats(im:ImageData){const hist=Array(256).fill(0);for(let i=0;i<
 function hsv(r:number,g:number,b:number){r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;let h=0;if(d)h=max===r?((g-b)/d)%6:max===g?(b-r)/d+2:(r-g)/d+4;return [(h*60+360)%360,max?d/max:0,max]}
 function rgb(h:number,s:number,v:number){const c=v*s,x=c*(1-Math.abs((h/60)%2-1)),m=v-c;const a=h<60?[c,x,0]:h<120?[x,c,0]:h<180?[0,c,x]:h<240?[0,x,c]:h<300?[x,0,c]:[c,0,x];return a.map(n=>(n+m)*255)}
 export function process(im:ImageData,o:Settings){const out=new ImageData(new Uint8ClampedArray(im.data),im.width,im.height),d=out.data;for(let i=0;i<d.length;i+=4){let c=[d[i]*o.r/100,d[i+1]*o.g/100,d[i+2]*o.b/100];let [h,s,v]=hsv(...c as [number,number,number]);c=rgb((h+o.h+360)%360,Math.min(1,s*o.s/100),Math.min(1,v*o.v/100));c=c.map(n=>{let x=n/255;if(o.log)x=Math.log(1+o.log*x)/Math.log(1+o.log);x=Math.pow(x,o.gamma);if(o.contrast)x=(x-o.low/255)/(Math.max(1,o.high-o.low)/255)*(o.contrast/100)+x*(1-o.contrast/100);return o.negative?255-x*255:x*255});const gray=.299*c[0]+.587*c[1]+.114*c[2];if(o.mode==='gray')c=[gray,gray,gray];if(o.mode==='binary')c=Array(3).fill(gray>=o.threshold?255:0);if(o.band!=='off'){const inside=gray>=o.low&&gray<=o.high;c=inside?[255,255,255]:o.band==='mask'?[0,0,0]:c}if(o.segment){const on=Math.min(Math.abs(h-o.hue),360-Math.abs(h-o.hue))<25&&s>.2;c=Array(3).fill(on?255:0)}if(o.solo)c=c.map((n,k)=>['r','g','b'][k]===o.solo?n:0);for(let k=0;k<3;k++)d[i+k]=c[k]}
-const stages=[o.filter,o.smoothing||'off',o.morphology||'off'].filter(value=>value!=='off');for(const filter of stages){const src=new Uint8ClampedArray(d),w=im.width,H=im.height;for(let y=0;y<H;y++)for(let x=0;x<w;x++)for(let c=0;c<3;c++){const ns:number[]=[];let weighted=0,weights=0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const val=src[(Math.max(0,Math.min(H-1,y+dy))*w+Math.max(0,Math.min(w-1,x+dx)))*4+c];ns.push(val);const weight=(dx===0?2:1)*(dy===0?2:1);weighted+=val*weight;weights+=weight}d[(y*w+x)*4+c]=filter==='median'?ns.sort((a,b)=>a-b)[4]:filter==='dilate'?Math.max(...ns):filter==='erode'?Math.min(...ns):filter==='gauss'?weighted/weights:ns.reduce((a,b)=>a+b)/9}}
+// Reuse scratch memory across stages instead of allocating a neighbourhood for
+// every pixel/channel. Each stage still reads only the previous stage's pixels.
+const stages=[o.filter,o.smoothing||'off',o.morphology||'off'].filter(value=>value!=='off');
+if(stages.length){
+ const src=new Uint8ClampedArray(d.length),neighbours=new Uint8Array(9),w=im.width,H=im.height;
+ const left=new Int32Array(w),right=new Int32Array(w);
+ for(let x=0;x<w;x++){left[x]=Math.max(0,x-1)*4;right[x]=Math.min(w-1,x+1)*4}
+ for(const filter of stages){
+  src.set(d);
+  for(let y=0;y<H;y++){
+   const above=Math.max(0,y-1)*w*4,row=y*w*4,below=Math.min(H-1,y+1)*w*4;
+   for(let x=0;x<w;x++){
+    const l=left[x],m=x*4,r=right[x];
+    for(let c=0;c<3;c++){
+     const a=src[above+l+c],b=src[above+m+c],cc=src[above+r+c];
+     const e=src[row+l+c],f=src[row+m+c],g=src[row+r+c];
+     const h=src[below+l+c],i=src[below+m+c],j=src[below+r+c];
+     let value:number;
+     if(filter==='median'){
+      neighbours[0]=a;neighbours[1]=b;neighbours[2]=cc;
+      neighbours[3]=e;neighbours[4]=f;neighbours[5]=g;
+      neighbours[6]=h;neighbours[7]=i;neighbours[8]=j;
+      // Insertion sort on nine bytes needs no arrays or comparator callbacks.
+      for(let n=1;n<9;n++){const v=neighbours[n];let k=n-1;while(k>=0&&neighbours[k]>v){neighbours[k+1]=neighbours[k];k--}neighbours[k+1]=v}
+      value=neighbours[4];
+     }else if(filter==='dilate')value=Math.max(a,b,cc,e,f,g,h,i,j);
+     else if(filter==='erode')value=Math.min(a,b,cc,e,f,g,h,i,j);
+     else if(filter==='gauss')value=(a+2*b+cc+2*e+4*f+2*g+h+2*i+j)/16;
+     else value=(a+b+cc+e+f+g+h+i+j)/9;
+     d[row+m+c]=value;
+    }
+   }
+  }
+ }
+}
+
 if(o.equalize){const histogram=new Uint32Array(256);for(let i=0;i<d.length;i+=4)histogram[Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2])]++;const count=im.width*im.height,first=histogram.findIndex(n=>n>0),minimum=histogram[first];if(count>minimum){const map=new Uint8ClampedArray(256);let cumulative=0;for(let i=0;i<256;i++){cumulative+=histogram[i];map[i]=Math.max(0,(cumulative-minimum)*255/(count-minimum))}for(let i=0;i<d.length;i+=4){const gray=Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]),shift=map[gray]-gray;for(let c=0;c<3;c++)d[i+c]+=shift}}}
 return out}
 export function sample(noise=false){const c=document.createElement('canvas');c.width=960;c.height=640;const x=c.getContext('2d')!;const sky=x.createLinearGradient(0,0,0,640);sky.addColorStop(0,'#a9c4c4');sky.addColorStop(.55,'#e8bd88');sky.addColorStop(1,'#243c3b');x.fillStyle=sky;x.fillRect(0,0,960,640);x.fillStyle='#f6d9a0';x.beginPath();x.arc(670,220,65,0,Math.PI*2);x.fill();for(let layer=0;layer<4;layer++){x.fillStyle=['#768d83','#4e7067','#31554e','#193b35'][layer];x.beginPath();x.moveTo(0,640);for(let i=0;i<=960;i+=12)x.lineTo(i,330+layer*65+Math.sin(i/120+layer*2)*55+Math.cos(i/70)*18);x.lineTo(960,640);x.fill()}for(let i=0;i<65;i++){const px=(i*157)%1000,py=330+(i*83)%280,height=45+(i*31)%135;x.fillStyle=i%2?'#183d35':'#254d41';x.fillRect(px-3,py,6,height);x.beginPath();x.moveTo(px,py-65);x.lineTo(px-28,py+height-15);x.lineTo(px+28,py+height-15);x.fill()}const im=x.getImageData(0,0,960,640);if(noise)for(let i=0;i<im.data.length;i+=4)if(Math.random()<.09){const v=Math.random()<.5?0:255;im.data[i]=im.data[i+1]=im.data[i+2]=v}return im}
