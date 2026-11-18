@@ -43,7 +43,7 @@ v = flatten(x)
 h = relu(W1 @ v + bias)
 output = softmax(W2 @ h)
 # fixed demonstration weights, not trained`}</code></pre></div>}
- {analysisUnlocked?<AdvancedCnn stage={stage} stages={stages} kernels={kernels} flat={flat} dense={dense} probabilities={probabilities}/>:<p>{t('İleri CNN analizi için oyun merkezindeki derin analiz testini tamamla.')}</p>}
+ {analysisUnlocked?<AdvancedCnn stage={stage} stages={stages} kernels={kernels} flat={flat} dense={dense} probabilities={probabilities}/>:<p>{t('CNN hesaplarını incelemek için oyun merkezindeki derin analiz testini tamamla.')}</p>}
  <p className="cnn-note">{t('Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.')}</p>
  </section>;
 }

@@ -11,7 +11,7 @@ let language:Language='tr';try{const stored=localStorage.getItem('pollmek-langua
 const listeners=new Set<()=>void>();
 export function parseLocalizedNumber(value:string){return Number(value.trim().replace(/[٠-٩]/g,digit=>String(digit.charCodeAt(0)-1632)).replace(/[۰-۹]/g,digit=>String(digit.charCodeAt(0)-1776)).replace(/٬/g,'').replace(/[٫,]/g,'.'))}
 export const getLocale=()=>({tr:'tr-TR',en:'en-US',es:'es-ES',pt:'pt-BR',ar:'ar-u-nu-latn'}[language]);
-function updateDocument(){document.documentElement.lang=language;document.documentElement.dir=language==='ar'?'rtl':'ltr';document.title='Pollmek Vision Sandbox — '+t('GÖRÜNTÜ İŞLEME OYUN ALANI');const description=document.querySelector('meta[name="description"]');description?.setAttribute('content',t('Bir fotoğraf seç, bir disk tak, farkı kaydırarak gör.'))}
+function updateDocument(){document.documentElement.lang=language;document.documentElement.dir=language==='ar'?'rtl':'ltr';document.title='Pollmek Vision Sandbox — '+t('GÖRÜNTÜ İŞLEME OYUN ALANI');const description=document.querySelector('meta[name="description"]');description?.setAttribute('content',t('Bir fotoğraf seç, bir disk tak, farkı kaydırarak gör.'));document.querySelector('meta[property="og:title"]')?.setAttribute('content',document.title);document.querySelector('meta[property="og:description"]')?.setAttribute('content',t('Bir fotoğraf seç, bir disk tak, farkı kaydırarak gör.'))}
 export function setLanguage(value:string){if(!valid(value))return;language=value;cache.clear();try{localStorage.setItem('pollmek-language',value)}catch{}updateDocument();listeners.forEach(listener=>listener())}
 export function useLanguage(){return useSyncExternalStore(listener=>{listeners.add(listener);return()=>listeners.delete(listener)},()=>language,()=> 'tr' as Language)}
 const folded=Object.fromEntries(Object.keys(en).map(key=>[key.toLocaleLowerCase('tr-TR'),key]));
@@ -22,7 +22,7 @@ export function t(text:string|undefined):string|undefined;
 export function t(text:string|undefined):string|undefined{
  if(text===undefined||language==='tr'||!text.trim())return text;
  const cached=cache.get(text);if(cached!==undefined)return cached;
- const key=text.trim().replace(/\s+/g,' '),dictionary=dictionaries[language];let result=dictionary[key];
+ const key=text.trim().replace(/\s+/g,' '),dictionary=dictionaries[language];let result=dictionary[text.trim()]??dictionary[key];
  if(result===undefined){const original=folded[key.toLocaleLowerCase('tr-TR')];if(original){result=dictionary[original];if(key===key.toLocaleLowerCase('tr-TR'))result=result.toLocaleLowerCase(getLocale());else if(original===original.toLocaleUpperCase('tr-TR')&&key!==original)result=result.charAt(0)+result.slice(1).toLocaleLowerCase(getLocale())}}
  if(result===undefined){
   const upload=key.match(/^(.*) yüklendi · (.*)$/),download=key.match(/^(.*) indirildi · (.*)$/),crop=key.match(/^Fotoğraf kırpıldı · (.*) piksel$/),limited=key.match(/^En fazla 5 fotoğraf eklenebilir\. İlk (.*) fotoğraf eklendi\.$/),choose=key.match(/^(.*) fotoğrafını seç$/),remove=key.match(/^(.*) fotoğrafını sıradan çıkar$/),stars=key.match(/^(.*) \/ 5 yıldız$/),channel=key.match(/^Kanal (\d+)$/);

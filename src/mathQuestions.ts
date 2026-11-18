@@ -12,3 +12,7 @@ export const mathQuestions:MathQuestion[]=[
 {id:'pure-math-09',topic:'Çift toplam · Σ',prompt:'Σᵢ₌₁³ Σⱼ₌₁² (i·j) kaçtır? (Σᵢ₌₁³ i)·(Σⱼ₌₁² j) ile ilişkisi nedir?',options:['9; çarpım 18 olduğu için eşit değildir.','18; toplam 6×3 biçiminde ayrıştığı için eşittir.','36; iki toplam olduğu için sonuç iki katına çıkar.','12; çarpım kuralı uygulanamaz.'],correct:1,explanation:'i=1 için 1×1+1×2=3; i=2 için 2+4=6; i=3 için 3+6=9. Toplam 18. Ayrık sınırlı sonlu toplamda i·j ayrışır: (1+2+3)×(1+2)=6×3=18.'},
 {id:'pure-math-10',topic:'Dört işlem · zor',prompt:'2473 × 3470; 100000 − 37846; 8581310 ÷ 2473; 12,5 × 0,48 işlemlerinin sonuçları sırasıyla nedir?',options:['8.581.310; 62.154; 347; 60','8.408.200; 62.154; 3470; 6','8.581.310; 62.154; 3470; 6','8.581.310; 72.154; 3470; 0,6'],correct:2,explanation:'2473×3470=2473×(3000+400+70)=7.419.000+989.200+173.110=8.581.310. 100000−37846=62.154. Bölme çarpmanın tersidir: 8.581.310/2473=3470. 12,5×0,48=6.'}
 ];
+
+export type QuestionNumber='01'|'02'|'03'|'04'|'05'|'06'|'07'|'08'|'09'|'10';
+export type QuestionId=`${'pure-math'|'analysis'}-${QuestionNumber}`;
+export type QuestionTranslations=Record<QuestionId,Pick<MathQuestion,'topic'|'prompt'|'explanation'> & {options:[string,string,string,string]}>;

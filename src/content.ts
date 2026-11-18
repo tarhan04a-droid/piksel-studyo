@@ -80,7 +80,7 @@ export const ui = {
   "text069": "Kapalı",
   "text070": "Aralığı maskele",
   "text071": "Arka planı koru",
-  "text073": "v1.0",
+  "text073": "v2.0",
   "text074": "Örnek görsel yüklenemedi.",
   "text075": "OTOMATİK",
   "text076": "Lütfen bir görsel dosyası seç.",

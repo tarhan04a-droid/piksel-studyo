@@ -78,7 +78,7 @@ CNN modülünün temel animasyon/kod/matris seçenekleri açık kalır. Derin an
 
 Son kullanıcı düzeltmesi: İnce İşlemler quiz altında açılan içerik değildir. Ana stüdyoda ayrı kilitli bölüm; test tamamlanmadan hover/focus/tap ile 10 soruluk matematik testi gereksinimi gösterilir. Saf matematik başarısı bu bölümü açar. Quiz sonunda yalnız stüdyoda açıldığını bildiren metin görünür. Derin analiz başarısı hâlâ yalnız ileri CNN panelini açar.
 
-Matematik kapsamı log/gama ile sınırlı değildir. 18 araç için referans, gama, log, kontrast, negatif, gri seviye, ikili eşikleme, RGB, HSV, ışık bandı, medyan, ortalama, Gauss, genişletme/aşındırma, bölütleme, otomatik karar kuralları ve histogram eşitleme formül/açıklamaları eklendi. Etkileşimli eğri laboratuvarı şu an gama/log içindir; diğerlerinin formül anlatımı vardır. Formül açıklamaları Türkçedir; arayüz metinleri beş dildedir. Bu açıklama bölümü stüdyo fotoğrafını kendiliğinden değiştirmez. Derleme/tip kontrolü geçti; hover/focus/oynanış testi yapılmadı.
+Matematik kapsamı log/gama ile sınırlı değildir. 18 araç için referans, gama, log, kontrast, negatif, gri seviye, ikili eşikleme, RGB, HSV, ışık bandı, medyan, ortalama, Gauss, genişletme/aşındırma, bölütleme, otomatik karar kuralları ve histogram eşitleme formül/açıklamaları eklendi. Etkileşimli eğri laboratuvarı şu an gama/log içindir; diğerlerinin formül anlatımı vardır. Formül açıklamaları ve arayüz metinleri beş dildedir. Bu açıklama bölümü stüdyo fotoğrafını kendiliğinden değiştirmez. Derleme/tip kontrolü geçti; hover/focus/oynanış testi yapılmadı.
 
 ## Ana fotoğrafa bağlı matematik ve grafik
 
@@ -86,7 +86,7 @@ Bağımsız gama/log laboratuvarı kaldırıldı. İnce İşlemler artık `proce
 
 Gerçek önce/sonra canvas'ında piksel seçilir; gerçek giriş/çıkış RGBA gösterilir. Kanal Y/R/G/B seçimine göre en fazla 4096 görünür pikselden giriş→çıkış nokta dağılımı ve örneklenmiş önce/sonra histogramı hesaplanır. Bu tüm stüdyo zincirinin etkisini gösterir; yalnız log/gama eğrisi değildir. Medyan/morfoloji gibi komşuluk işlemlerinde aynı giriş için farklı çıktı mümkün olduğundan sahte tek transfer eğrisi çizilmez. Grafik örneklemelidir, tam çözünürlük histogramı olduğu söylenmez.
 
-Yalnız uygulanmış işlemlerin formülleri, gerçek ayar nesnesiyle `process(source, settings)` çağrısı ve seçili piksel başlangıç/sonuç değerleri gösterilir. Kaynak 3×3 komşuluk da incelenebilir; bunun filtreye girmeden önceki dönüşümlerden geçmiş ara komşuluk olduğu iddia edilmez. Formül açıklamaları Türkçedir, arayüz beş dildedir. Bağımsız nesne ayırma/video çıktıları ana stüdyo worker çıktısına uygulanmadığı için bu panelde onların sonucu varmış gibi gösterilmez. Derleme/tip kontrolü geçti; görsel/işlev testi yapılmadı.
+Yalnız uygulanmış işlemlerin formülleri, gerçek ayar nesnesiyle `process(source, settings)` çağrısı ve seçili piksel başlangıç/sonuç değerleri gösterilir. Kaynak 3×3 komşuluk da incelenebilir; bunun filtreye girmeden önceki dönüşümlerden geçmiş ara komşuluk olduğu iddia edilmez. Formül açıklamaları ve arayüz beş dildedir. Bağımsız nesne ayırma/video çıktıları ana stüdyo worker çıktısına uygulanmadığı için bu panelde onların sonucu varmış gibi gösterilmez. Derleme/tip kontrolü geçti; görsel/işlev testi yapılmadı.
 
 ## Derin analiz stüdyo girişi
 
@@ -103,3 +103,7 @@ Alan Yolculuğu içindeki açılır koleksiyon, 3×3–255×255 arasındaki 127 
 
 ## Alan Yolculuğu renk kanalı
 RGB / R / G / B seçimi vardır. RGB’de üç kanal aynı bölüm değerini alır; tek kanal seçilince o kanal büyür, diğer iki kanal 1’de kalır. Örneğin R modunda 3×3 tamamlanınca (3,1,1), 5×5 tamamlanınca (5,1,1) olur. Kanal değişimi bölümü veya kare koleksiyonunu sıfırlamaz. Seçim normal yolculuk kaydında saklanır, otomatik sonraki bölüme ve serbest moda taşınır. Eski kayıtların varsayılanı RGB’dir.
+
+
+## Beş dilde öğrenme içerikleri
+İki testin 20 sorusu/seçeneği/açıklaması EN, ES, PT ve AR için dinamik yüklenen bankalardan gösterilir. Dil seçmek ilerlemeyi veya cevap anahtarını değiştirmez. İnce İşlemler’in 18 açıklaması da çevrilir. Arapçada formüller/matris satırları LTR, metinler RTL kalır. Ayrıntılar `docs/LANGUAGES.md` içindedir.
