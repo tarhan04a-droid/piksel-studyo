@@ -2,7 +2,7 @@ import {useEffect,useRef,useState,type ReactNode} from 'react';
 import {t,useLanguage} from './i18n';
 const tools=[
  ['quick','✦','Hızlı işlemler'],['color','◐','Işık ve renk'],['detail','▦','Doku ve detay'],
- ['segment','⌗','Bölütleme'],['files','▱','Dosya araçları'],['video','▷','Video araçları'],['analysis','⌁','Analiz ve öğrenme'],
+ ['segment','⌗','Bölütleme'],['files','▱','Dosya araçları'],['video','▷','Video araçları'],['analysis','⌁','Analiz ve öğrenme'],['histogram','▥','Histogram'],
 ] as const;
 type Tool=typeof tools[number][0];
 export default function StudioHub({sections,activeCount}:{sections:Record<Tool,ReactNode>;activeCount:number}){

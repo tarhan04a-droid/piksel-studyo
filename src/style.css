@@ -721,3 +721,24 @@ html[data-theme="light"] #root>.pixel-orbitals{color:#146c68}
 .orbital-cluster .orbital-spin{animation-timing-function:steps(48,end)}
 .orbital-cluster .orbital-spin i{width:5px;height:11px;border-radius:0;box-shadow:6px 4px 0 -1px currentColor;opacity:.85}
 #root>.pixel-orbitals .orbital-cluster .orbital-core{width:6px;height:6px;background:#8ce6cd99;box-shadow:5px 0 #72b7a666,0 5px #44837766,5px 5px #315f5666}
+
+/* Eight balanced tool entries and a denser histogram panel. */
+.hub-categories>.hub-category:last-child{grid-column:auto}
+.studio .studio-layout>.studio-hub{padding:16px}
+.hub-state{margin:12px 0}
+.hub-categories{gap:7px}
+.studio-hub button.hub-category{min-height:48px;padding:8px 10px}
+.hub-panel-heading{margin-top:14px;padding-top:12px}
+.hub-empty{margin-top:14px;line-height:1.6}
+.studio-hub .hub-tool-histogram{padding-top:0}
+.studio-hub .hub-tool-histogram .lab h3{display:none}
+.studio-hub .hub-tool-histogram .hist-tabs{margin:8px 0;gap:6px}
+.studio-hub .hub-tool-histogram .hist-tabs button{min-height:36px;padding:7px 10px}
+.studio-hub .hub-tool-histogram .lab p{margin:7px 0;font-size:11px;line-height:1.5}
+.studio-hub .hub-tool-histogram .hist-legend{margin:8px 0}
+.studio-hub .hub-tool-histogram .hist-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}
+.studio-hub .hub-tool-histogram .hist-stats p{margin:0;overflow-wrap:anywhere}
+.studio-hub .hub-tool-histogram .slider{margin:10px 0}
+.studio-hub .hub-tool-histogram .slider input[type="range"]{margin:2px 0;min-height:30px}
+.studio-hub .hub-tool-histogram .hist-stretch-toggle{margin:6px 0;min-height:42px}
+@media(max-width:800px){.studio-hub .hub-categories{grid-template-columns:repeat(2,minmax(0,1fr))}.studio-hub button.hub-category{flex-direction:row;text-align:start;min-height:48px;padding:8px 10px}}
