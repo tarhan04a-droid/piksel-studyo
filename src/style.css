@@ -802,3 +802,8 @@ body[data-scene] .territory-game :is(.custom-game-options,.journey-collection){b
 .territory-game :is(.custom-game-options,.journey-collection)>summary:focus-visible{outline:2px solid #83d9cb;outline-offset:1px;border-radius:999px}
 body[data-scene] .territory-game :is(.pool-config input,.pool-config select){border-radius:999px;min-height:44px;border:1px solid var(--button-edge);background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));color:var(--button-ink);padding:10px 14px}
 @media(hover:hover){.territory-game :is(.custom-game-options,.journey-collection)>summary:hover{background:#92d9cf0d}}
+
+/* Preserve journey colors; only soften the remaining square corners. */
+.territory-game .journey-color select{border-radius:999px;padding:10px 16px}
+.territory-game .journey-color select:focus-visible{outline:2px solid #83d9cb;outline-offset:3px;border-radius:999px}
+.territory-game .journey-squares li{border-radius:22px}
