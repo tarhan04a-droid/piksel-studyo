@@ -742,3 +742,63 @@ html[data-theme="light"] #root>.pixel-orbitals{color:#146c68}
 .studio-hub .hub-tool-histogram .slider input[type="range"]{margin:2px 0;min-height:30px}
 .studio-hub .hub-tool-histogram .hist-stretch-toggle{margin:6px 0;min-height:42px}
 @media(max-width:800px){.studio-hub .hub-categories{grid-template-columns:repeat(2,minmax(0,1fr))}.studio-hub button.hub-category{flex-direction:row;text-align:start;min-height:48px;padding:8px 10px}}
+
+/* Rounded math/analysis content, including scrollable code and focus states. */
+.analysis-workspace :is(.fine-math,.studio-deep-content) pre{border-radius:20px;padding:16px 18px;background-clip:padding-box;scrollbar-width:thin;scrollbar-color:#779f9a66 transparent}
+.analysis-workspace :is(.fine-math,.studio-deep-content) pre::-webkit-scrollbar{height:9px;width:9px}
+.analysis-workspace :is(.fine-math,.studio-deep-content) pre::-webkit-scrollbar-track{background:transparent;margin:14px}
+.analysis-workspace :is(.fine-math,.studio-deep-content) pre::-webkit-scrollbar-thumb{background:#779f9a66;border-radius:999px}
+.analysis-workspace pre::-webkit-scrollbar-corner{background:transparent}
+.analysis-workspace .math-photos canvas{border-radius:22px;clip-path:inset(0 round 22px)}
+.analysis-workspace :is(.fine-math,.studio-deep-content) details{border-radius:24px;padding:8px}
+.analysis-workspace :is(.fine-math,.studio-deep-content) summary{border-radius:999px;padding:9px 14px;min-height:44px;transition:background .18s}
+.analysis-workspace :is(.fine-math,.studio-deep-content) summary:focus-visible{outline:2px solid #83d9cb;outline-offset:1px;border-radius:999px}
+.analysis-workspace :is(.fine-math,.studio-deep-content) details>pre{margin:10px 4px 8px}
+.analysis-workspace .operation-explanation{padding-inline:4px}
+@media(hover:hover){.analysis-workspace :is(.fine-math,.studio-deep-content) summary:hover{background:#92d9cf0d}}
+@media(prefers-reduced-motion:reduce){.analysis-workspace :is(.fine-math,.studio-deep-content) summary{transition:none}}
+
+/* Code and formulas use the same glass surfaces as the rest of the interface. */
+body[data-scene] .analysis-workspace :is(.fine-math,.studio-deep-content) pre{background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));color:var(--button-ink);border:1px solid var(--button-edge);border-radius:24px;box-shadow:inset 0 1px #ffffff26,0 3px 12px #00000014;padding:18px 20px;line-height:1.9}
+body[data-scene] .analysis-workspace :is(.fine-math,.studio-deep-content) pre code{background:transparent;color:inherit;border:0;box-shadow:none}
+body[data-scene] .analysis-workspace :is(.fine-math,.studio-deep-content) details{background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));border-color:var(--button-edge);box-shadow:inset 0 1px #ffffff1c}
+body[data-scene] .analysis-workspace :is(.fine-math,.studio-deep-content) summary{color:var(--button-ink)}
+
+/* Consistent glass cards for the RGB/CNN learning matrices as well. */
+body[data-scene] .image-reading .machine-matrix pre{background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));color:var(--button-ink);border:1px solid var(--button-edge);border-radius:24px;box-shadow:inset 0 1px #ffffff26,0 3px 12px #00000014;padding:18px 20px;line-height:1.9;scrollbar-width:thin;scrollbar-color:#779f9a66 transparent;background-clip:padding-box}
+.image-reading .machine-matrix pre code{background:none;color:inherit}
+.image-reading .machine-matrix pre::-webkit-scrollbar{height:9px;width:9px}
+.image-reading .machine-matrix pre::-webkit-scrollbar-track{background:transparent;margin:14px}
+.image-reading .machine-matrix pre::-webkit-scrollbar-thumb{border-radius:999px;background:#779f9a66}
+.image-reading .machine-matrix pre::-webkit-scrollbar-corner{background:transparent}
+body[data-scene] .rgb-number-matrix>span{border:1px solid var(--button-edge);border-radius:12px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));padding:7px 4px;box-shadow:inset 0 1px #ffffff18}
+body[data-scene] .rgb-number-matrix>span.current{border-color:var(--button-accent-edge);background:linear-gradient(150deg,var(--button-accent-top),var(--button-accent-bottom));outline:0;color:var(--button-ink)}
+.image-reading .rgb-number-matrix{gap:5px}
+body[data-scene] .cnn-explanation{border:1px solid var(--button-edge);border-radius:24px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));padding:16px 20px;box-shadow:inset 0 1px #ffffff26}
+.image-reading .cnn-kernel{border-radius:18px;overflow:hidden}
+.image-reading .cnn-kernel span{border-radius:9px}
+.image-reading .cnn-inspector canvas{border-radius:18px}
+
+body[data-scene] .image-reading .cnn-kernel{display:grid;grid-template-columns:repeat(3,minmax(48px,1fr));gap:7px;width:max-content;max-width:100%;padding:10px;border:1px solid var(--button-edge);border-radius:24px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));box-shadow:inset 0 1px #ffffff26;overflow:visible}
+body[data-scene] .image-reading .cnn-kernel>span{display:flex;align-items:center;justify-content:center;min-height:38px;padding:8px 10px;border:1px solid var(--button-edge);border-radius:999px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));color:var(--button-ink);box-shadow:inset 0 1px #ffffff20;font-size:12px;white-space:nowrap}
+@media(max-width:450px){body[data-scene] .image-reading .cnn-kernel{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:7px;width:100%}body[data-scene] .image-reading .cnn-kernel>span{padding:7px 3px;font-size:11px}}
+
+/* Both quiz banks share rounded glass answer cards and clear selected states. */
+body[data-scene] .math-quiz{border-radius:24px;border-color:var(--button-edge);background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom))}
+body[data-scene] .math-quiz .quiz-option{border:1px solid var(--button-edge);border-radius:24px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));box-shadow:inset 0 1px #ffffff26,0 3px 9px #00000014;padding:14px 18px;min-height:52px;transition:border-color .18s,background .18s;align-items:flex-start}
+body[data-scene] .math-quiz .quiz-option:has(input:checked){border-color:var(--button-accent-edge);background:linear-gradient(150deg,var(--button-accent-top),var(--button-accent-bottom))}
+.math-quiz .quiz-option input[type="radio"]{appearance:none;-webkit-appearance:none;width:22px;height:22px;min-width:22px;margin:2px 0 0;border-radius:50%;border:1px solid #9dcec47a;background:#a0d9cf0c;display:grid;place-items:center}
+.math-quiz .quiz-option input[type="radio"]:checked:after{content:'';width:10px;height:10px;border-radius:50%;background:#8fdfcd}
+.math-quiz .quiz-option:focus-within{outline:2px solid #83d9cb;outline-offset:2px}
+body[data-scene] .math-quiz :is(.quiz-steps,.quiz-actions) button{border-radius:999px;min-height:44px;border:1px solid var(--button-edge);background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));color:var(--button-ink);box-shadow:inset 0 1px #ffffff26}
+body[data-scene] .math-quiz :is(.quiz-feedback,.quiz-unlocked){border:1px solid var(--button-edge);border-radius:22px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom))}
+html[data-theme="light"] .math-quiz .quiz-option input[type="radio"]:checked:after{background:#176d61}
+@media(hover:hover){body[data-scene] .math-quiz .quiz-option:hover{border-color:var(--button-accent-edge)}}
+@media(prefers-reduced-motion:reduce){.math-quiz .quiz-option{transition:none!important}}
+
+/* Finish the journey panels with rounded glass and rounded keyboard focus. */
+body[data-scene] .territory-game :is(.custom-game-options,.journey-collection){border:1px solid var(--button-edge);border-radius:24px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));box-shadow:inset 0 1px #ffffff26,0 3px 12px #00000014;padding:10px 14px;margin-block:14px}
+.territory-game :is(.custom-game-options,.journey-collection)>summary{border-radius:999px;min-height:44px;padding:10px 14px;line-height:1.6;cursor:pointer}
+.territory-game :is(.custom-game-options,.journey-collection)>summary:focus-visible{outline:2px solid #83d9cb;outline-offset:1px;border-radius:999px}
+body[data-scene] .territory-game :is(.pool-config input,.pool-config select){border-radius:999px;min-height:44px;border:1px solid var(--button-edge);background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));color:var(--button-ink);padding:10px 14px}
+@media(hover:hover){.territory-game :is(.custom-game-options,.journey-collection)>summary:hover{background:#92d9cf0d}}
