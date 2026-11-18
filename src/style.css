@@ -807,3 +807,5 @@ body[data-scene] .territory-game :is(.pool-config input,.pool-config select){bor
 .territory-game .journey-color select{border-radius:999px;padding:10px 16px}
 .territory-game .journey-color select:focus-visible{outline:2px solid #83d9cb;outline-offset:3px;border-radius:999px}
 .territory-game .journey-squares li{border-radius:22px}
+
+.math-quiz .quiz-steps button:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
