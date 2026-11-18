@@ -75,7 +75,7 @@
   "Laboratuvar / Canlı histogram": "المختبر / المدرج التكراري المباشر",
   "Karanlık ve aydınlık sınırları tüm renk kanallarına uygulanır.": "يُطبّق الحد الداكن والفاتح على جميع قنوات الألوان.",
   "Bir renk seç. O renkteki bölgeler beyaz, diğer alanlar siyah görünür.": "اختر لونًا. تظهر المناطق المطابقة بالأبيض والباقي بالأسود.",
-  "Görünüm": "العرض",
+  "Görünüm": "المظهر",
   "Renkli / RGB": "ملوّن / RGB",
   "Gri seviye": "تدرج رمادي",
   "Filtre": "المرشح",
@@ -805,5 +805,17 @@
   "Menüyü kapat": "إغلاق القائمة",
   "Araç panelini kapat": "إغلاق لوحة الأدوات",
   "Fotoğrafın burada kalır. Bir kategori seç; yalnızca ihtiyacın olan ayarlar açılsın.": "تبقى صورتك هنا. اختر فئة لإظهار الإعدادات التي تحتاجها فقط.",
-  "İndirme boyutu": "حجم التنزيل"
+  "İndirme boyutu": "حجم التنزيل",
+  "Analog": "تناظري",
+  "Modern": "حديث",
+  "Modern görünümü açmak için kare koleksiyonunu ve iki testi tamamla.": "أكمل مجموعة المربعات والاختبارين لفتح الواجهة الحديثة.",
+  "Matematik": "الرياضيات",
+  "TV kumandası": "جهاز التحكم بالتلفاز",
+  "Sonraki işlem": "العملية التالية",
+  "Önceki işlem": "العملية السابقة",
+  "Sonraki görsel": "الصورة التالية",
+  "Önceki görsel": "الصورة السابقة",
+  "Görsel": "الصورة",
+  "Güç tuşu histogramı açar.": "زر التشغيل يفتح المدرج التكراري.",
+  "Kendi fotoğrafında dene": "جرّب على صورتك"
 }

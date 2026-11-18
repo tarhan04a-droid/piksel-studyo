@@ -75,7 +75,7 @@
   "Laboratuvar / Canlı histogram": "Laboratório / Histograma ao vivo",
   "Karanlık ve aydınlık sınırları tüm renk kanallarına uygulanır.": "Os limites escuro e claro se aplicam a todos os canais de cor.",
   "Bir renk seç. O renkteki bölgeler beyaz, diğer alanlar siyah görünür.": "Escolha uma cor. As áreas correspondentes ficam brancas e o restante, preto.",
-  "Görünüm": "Visualização",
+  "Görünüm": "Aparência",
   "Renkli / RGB": "Colorido / RGB",
   "Gri seviye": "Escala de cinza",
   "Filtre": "Filtro",
@@ -805,5 +805,17 @@
   "Menüyü kapat": "Fechar menu",
   "Araç panelini kapat": "Fechar painel de ferramentas",
   "Fotoğrafın burada kalır. Bir kategori seç; yalnızca ihtiyacın olan ayarlar açılsın.": "Sua foto fica aqui. Escolha uma categoria para ver apenas os ajustes necessários.",
-  "İndirme boyutu": "Tamanho do download"
+  "İndirme boyutu": "Tamanho do download",
+  "Analog": "Analógico",
+  "Modern": "Moderno",
+  "Modern görünümü açmak için kare koleksiyonunu ve iki testi tamamla.": "Complete a coleção de quadrados e os dois testes para desbloquear a interface moderna.",
+  "Matematik": "Matemática",
+  "TV kumandası": "Controle da TV",
+  "Sonraki işlem": "Próxima operação",
+  "Önceki işlem": "Operação anterior",
+  "Sonraki görsel": "Próxima imagem",
+  "Önceki görsel": "Imagem anterior",
+  "Görsel": "Imagem",
+  "Güç tuşu histogramı açar.": "O botão de energia abre o histograma.",
+  "Kendi fotoğrafında dene": "Experimente com sua foto"
 }

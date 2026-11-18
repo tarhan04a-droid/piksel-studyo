@@ -75,7 +75,7 @@
   "Laboratuvar / Canlı histogram": "Lab / Live histogram",
   "Karanlık ve aydınlık sınırları tüm renk kanallarına uygulanır.": "Dark and light limits apply to all color channels.",
   "Bir renk seç. O renkteki bölgeler beyaz, diğer alanlar siyah görünür.": "Choose a color. Matching areas appear white; the rest appears black.",
-  "Görünüm": "View",
+  "Görünüm": "Appearance",
   "Renkli / RGB": "Color / RGB",
   "Gri seviye": "Grayscale",
   "Filtre": "Filter",
@@ -805,5 +805,17 @@
   "Menüyü kapat": "Close menu",
   "Araç panelini kapat": "Close tool panel",
   "Fotoğrafın burada kalır. Bir kategori seç; yalnızca ihtiyacın olan ayarlar açılsın.": "Your photo stays here. Choose a category to reveal just the settings you need.",
-  "İndirme boyutu": "Download size"
+  "İndirme boyutu": "Download size",
+  "Analog": "Analog",
+  "Modern": "Modern",
+  "Modern görünümü açmak için kare koleksiyonunu ve iki testi tamamla.": "Complete the square collection and both tests to unlock the modern interface.",
+  "Matematik": "Mathematics",
+  "TV kumandası": "TV remote",
+  "Sonraki işlem": "Next operation",
+  "Önceki işlem": "Previous operation",
+  "Sonraki görsel": "Next image",
+  "Önceki görsel": "Previous image",
+  "Görsel": "Image",
+  "Güç tuşu histogramı açar.": "The power button opens the histogram.",
+  "Kendi fotoğrafında dene": "Try with your photo"
 }
