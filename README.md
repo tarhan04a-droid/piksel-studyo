@@ -65,3 +65,8 @@ Teslim bağlantıları ve açıklama: [Teslim notu](docs/SUBMISSION.md).
 Görsel/ses kaynaklarının izin durumu: [Medya kaynakları](docs/MEDIA_SOURCES.md).
 
 2 Kasım 2026 mobil kontrolü: 390 ve 320 piksel tarayıcı viewportlarında ana sayfa/oyun alanı, açık tema, kayıt penceresi ve yüzdeyle kırpma kontrol edildi; yatay sayfa taşması görülmedi. Bu gerçek telefon/dokunma testi değildir. Oyun alanına geçilince TV ses kaynağı durdurulur; ana sayfaya dönüşte kadrandaki seviye ile yeniden başlar. Kırpma disk değildir; orijinal dosya mevcutsa orijinal çözünürlüğe uygulanır.
+
+
+## Uzak AI bağdaştırıcısı
+
+Ayarlar → AI bağlantısı üzerinden Claude’a özel MCP URL’si eklenebilir. Bu özellik için Vercel projesine Redis/Upstash REST ortam değişkenleri gerekir; anahtarlar yalnız sunucuda tutulur. Fotoğraf işleme tarayıcıda kalır. Kurulum, yetkiler ve mevcut sınırlar: [AI bağlantısı](docs/AI_CONNECTION.md). Depo yapılandırılmadıysa bağlantı çalışmaz ve arayüz bunu bildirir.

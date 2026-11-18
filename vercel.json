@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/*.js": {
+      "includeFiles": "src/aiSettingsSchema.json",
+      "maxDuration": 30
+    }
+  }
+}

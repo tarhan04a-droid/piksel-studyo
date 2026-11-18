@@ -95,3 +95,11 @@ Ana stüdyoda ayrı Derin analiz bölümü eklendi; yalnız analysis testiyle a�
 ## İşlem bazında kod açıklamaları
 
 Derin Analiz'e mevcut ayarlarla aktif işlem parçaları eklendi. Negatif açıkken R/G/B için 255−kanal örneği açık gösterilir; alpha korunur. Kod parçaları açıkça okunabilir anlatım olarak etiketlenir, tek başlarına bütün işlem hattı olduğu iddia edilmez. Ayrıca engine.ts gerçek kaynak metni Vite ?raw ile doğrudan gösterilir; kaynakla ayrı bir kopya tutulmaz. Bu içerik yalnız kilit açılıp panel açıldığında dinamik yüklenir. Matematik bölümüne kod eklenmedi. Derleme/tip kontrolü geçti; işlev testi yapılmadı.
+
+
+## Tamamlanan kare koleksiyonu
+Alan Yolculuğu içindeki açılır koleksiyon, 3×3–255×255 arasındaki 127 bölümü gösterir. Yalnız bölümlü yolculukta tüm alanı doldurmak kare kazandırır; serbest mod sayılmaz. Koleksiyon ayrı localStorage kaydında saklanır ve yeni yolculuk başlatınca korunur. Eski geçerli yolculuk kaydında mevcut bölümden önceki zorunlu bölümler koleksiyona aktarılır. Tarayıcı verilerini temizlemek koleksiyonu siler. Modern tema henüz açılmaz; koleksiyon onun gelecekteki koşullarından biridir.
+
+
+## Alan Yolculuğu renk kanalı
+RGB / R / G / B seçimi vardır. RGB’de üç kanal aynı bölüm değerini alır; tek kanal seçilince o kanal büyür, diğer iki kanal 1’de kalır. Örneğin R modunda 3×3 tamamlanınca (3,1,1), 5×5 tamamlanınca (5,1,1) olur. Kanal değişimi bölümü veya kare koleksiyonunu sıfırlamaz. Seçim normal yolculuk kaydında saklanır, otomatik sonraki bölüme ve serbest moda taşınır. Eski kayıtların varsayılanı RGB’dir.
