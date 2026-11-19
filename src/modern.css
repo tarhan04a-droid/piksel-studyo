@@ -120,3 +120,8 @@ html[data-portal="absorb"] #root,html[data-portal="reveal"] #root{animation-dura
 /* The portal is now only the blue vortex, without a mechanical frame. */
 .portal-vortex{background:#173c95;box-shadow:0 0 30px #77dfff55}
 .portal-vortex .portal-center{inset:0}
+/* Match the modern TV call to action to the rounded glass navigation. */
+html[data-interface="modern"] body[data-scene] .modern-tv-caption button{min-height:44px;padding:11px 20px;border:1px solid var(--button-edge);border-radius:999px;background:linear-gradient(150deg,var(--button-glass-top),var(--button-glass-bottom));color:var(--button-ink);box-shadow:inset 0 1px #ffffff26,inset 0 -1px #ffffff0d,0 3px 9px #00000018;line-height:1.5;transition:border-color .18s,box-shadow .18s,transform .18s}
+@media(hover:hover){html[data-interface="modern"] body[data-scene] .modern-tv-caption button:hover{border-color:var(--modern-gold);box-shadow:inset 0 1px #ffffff38,0 4px 12px #0002}}
+html[data-interface="modern"] body[data-scene] .modern-tv-caption button:active{transform:translateY(1px)}
+@media(prefers-reduced-motion:reduce){html[data-interface="modern"] body[data-scene] .modern-tv-caption button{transition:none}}
