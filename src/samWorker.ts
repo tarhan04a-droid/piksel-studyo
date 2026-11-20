@@ -1,3 +1,4 @@
+import {isMobileCutoutDevice} from './cutoutRuntime';
 /// <reference lib="webworker" />
 import {SamModel,AutoProcessor,RawImage,Tensor,env,type SamProcessor} from '@huggingface/transformers';
 env.allowLocalModels=false;env.backends.onnx.wasm!.numThreads=1;
@@ -7,6 +8,7 @@ self.onmessage=async(event:MessageEvent<{type:'init'|'select';image?:ImageData;p
  if(running)return;running=true;const transient:Tensor[]=[];
  try{
   if(event.data.type==='init'){
+   if(isMobileCutoutDevice())throw new Error('mobile-memory-limit');
    const image=event.data.image;if(!image)throw new Error('image');self.postMessage({type:'status',value:'Model indiriliyor ve hazırlanıyor…'});
    const loadedModel=await SamModel.from_pretrained('Xenova/slimsam-77-uniform',{device:'wasm',dtype:'q8',revision:'5850ab45f587c112167512ffef949107115e26a0',session_options:{executionMode:'sequential',enableMemPattern:false,enableCpuMemArena:false,graphOptimizationLevel:'basic'}});
    if(!(loadedModel instanceof SamModel))throw new Error('model-type');model=loadedModel;
