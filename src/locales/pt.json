@@ -1306,5 +1306,13 @@
   "Zebra üzerinde alan çiz. Kenarın herhangi bir yerini sürükleyerek sınırı şekillendir; içindeki her şey korunur. Noktayla nesne seçimi için mevcut modeli yükleyebilirsin.": "Desenhe uma área na foto da zebra. Arraste qualquer ponto da borda para ajustar o contorno; tudo dentro é mantido. Você pode carregar o modelo existente para selecionar objetos por pontos.",
   "Kutuyla veya serbest sınırla seçtiğin alan eksiksiz korunur. Noktayla nesne seçimi ayrı olarak modeli kullanır.": "Toda a área selecionada com uma caixa ou contorno livre é mantida. A seleção de objetos por pontos usa o modelo separadamente.",
   "Kırpma sonucu": "Resultado do recorte",
-  "piksel ·": "pixels ·"
+  "piksel ·": "pixels ·",
+  "Serbest sınırla seçim": "Seleção de contorno livre",
+  "Sarı halka başlangıç pikselidir. Seçim, renk toleransına uyan dört yönlü bağlı komşulara kuyruk sırasıyla yayılır; kopuk benzer renkler seçilmez.": "O círculo amarelo marca o pixel inicial. A seleção avança na ordem da fila pelos vizinhos conectados em quatro direções dentro da tolerância de cor; cores semelhantes desconectadas não são selecionadas.",
+  "Fotoğrafa dokun": "Toque na foto",
+  "Bağlı komşulara yayıl": "Expandir pelos vizinhos conectados",
+  "Bölgeyi çiz": "Desenhe a região",
+  "Sınırı şekillendir": "Ajuste o contorno",
+  "Aşama ilerlemesi": "Progresso da etapa",
+  "Aşamalar": "Etapas"
 }

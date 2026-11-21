@@ -1,4 +1,3 @@
-import CropLearning from './CropLearning';
 import CutoutLearning from './CutoutLearning';
 import ToolAnimation from './ToolAnimation';
 import {useState} from 'react';
@@ -23,5 +22,6 @@ export default function ToolLearning({kind,showMath,step}:{kind:keyof typeof les
  ];
  const videoMath=[{formula:'T′ = T / r',example:`6 s / ${rate} = ${(6/rate).toFixed(2)} s`},{formula:'W′ / H′ = W / H',example:'640 × 640 → 320 × 320'}, {formula:'MP4 = ftyp + moov + mdat',example:'H.264 + AAC → MP4\n144 frames / 24 fps = 6 s'}];
  const math=kind==='files'?fileMath[selected]:kind==='video'?videoMath[selected]:lesson;
- return <section className="architecture-demo tool-learning"><h2>{t(lesson.steps[selected][0])}</h2><p>{t(shortDescriptions[kind][selected])}</p>{kind==='cutout'?<CutoutLearning method={selected===0?'color':'model'}/>:kind==='files'&&selected===0?<><ToolAnimation kind={kind} labels={lesson.steps.map(([title])=>title)} rate={rate} selectedStage={step} onStageChange={setStage}/><CropLearning/></>:<ToolAnimation kind={kind} labels={lesson.steps.map(([title])=>title)} rate={rate} selectedStage={step} onStageChange={setStage}/>}{kind==='video'&&selected===0&&<div className="filter-settings"><label>{t('Hız')} · {rate}×<input type="range" min="0.5" max="10" step="0.25" value={rate} onChange={e=>setRate(+e.target.value)}/></label><output>{t('Süre')} · 6 s → {(6/rate).toFixed(2)} s</output></div>}{showMath&&<LearningMath formula={math.formula} example={math.example} meaning=""/>}</section>;
+ if(kind==='cutout')return <section className="architecture-demo tool-learning"><CutoutLearning method={selected===0?'color':'model'} showMath={showMath}/></section>;
+ return <section className="architecture-demo tool-learning"><h2>{t(lesson.steps[selected][0])}</h2><p>{t(shortDescriptions[kind][selected])}</p>{<ToolAnimation kind={kind} labels={lesson.steps.map(([title])=>title)} rate={rate} selectedStage={step} onStageChange={setStage}/>}{kind==='video'&&selected===0&&<div className="filter-settings"><label>{t('Hız')} · {rate}×<input type="range" min="0.5" max="10" step="0.25" value={rate} onChange={e=>setRate(+e.target.value)}/></label><output>{t('Süre')} · 6 s → {(6/rate).toFixed(2)} s</output></div>}{showMath&&<LearningMath formula={math.formula} example={math.example} meaning=""/>}</section>;
 }

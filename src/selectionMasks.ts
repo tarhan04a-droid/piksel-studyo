@@ -5,11 +5,11 @@ export function insideSelectionBox(x:number,y:number,box:SelectionBox|null){retu
 export function constrainSelectionMask(mask:Uint8Array,width:number,height:number,box:SelectionBox|null){
  const result=mask.slice();if(box)for(let y=0;y<height;y++)for(let x=0;x<width;x++)if(!insideSelectionBox(x,y,box))result[y*width+x]=0;return result;
 }
-export function connectedColorMask(image:{width:number;height:number;data:Uint8ClampedArray},seeds:{x:number;y:number;add:boolean}[],tolerance:number){
+export function connectedColorMask(image:{width:number;height:number;data:Uint8ClampedArray},seeds:{x:number;y:number;add:boolean}[],tolerance:number,onSelected?:(pixel:number)=>void){
  const{width,height,data}=image,count=width*height,mask=new Uint8Array(count),visited=new Uint8Array(count),queue=new Int32Array(count),limit=3*Math.max(0,Math.min(255,tolerance))**2;
  for(const seed of seeds){const x=Math.max(0,Math.min(width-1,Math.floor(seed.x))),y=Math.max(0,Math.min(height-1,Math.floor(seed.y))),offset=(y*width+x)*4;if(!data[offset+3])continue;const r=data[offset],g=data[offset+1],b=data[offset+2];visited.fill(0);let head=0,tail=0;
   const visit=(i:number)=>{if(visited[i])return;visited[i]=1;const p=i*4;if(data[p+3]&&(data[p]-r)**2+(data[p+1]-g)**2+(data[p+2]-b)**2<=limit)queue[tail++]=i};visit(y*width+x);
-  while(head<tail){const i=queue[head++];mask[i]=seed.add?1:0;const col=i%width;if(col)visit(i-1);if(col<width-1)visit(i+1);if(i>=width)visit(i-width);if(i<count-width)visit(i+width)}
+  while(head<tail){const i=queue[head++];mask[i]=seed.add?1:0;onSelected?.(i);const col=i%width;if(col)visit(i-1);if(col<width-1)visit(i+1);if(i>=width)visit(i-width);if(i<count-width)visit(i+width)}
  }return mask;
 }
 /** Rectangular isolation preserves every source pixel inside the dragged bounds. */

@@ -1306,5 +1306,13 @@
   "Zebra üzerinde alan çiz. Kenarın herhangi bir yerini sürükleyerek sınırı şekillendir; içindeki her şey korunur. Noktayla nesne seçimi için mevcut modeli yükleyebilirsin.": "ارسم منطقة على صورة الحمار الوحشي. اسحب أي موضع على حافتها لتشكيل الحدود؛ يُحفظ كل ما بداخلها. يمكنك تحميل النموذج الحالي لتحديد الكائن بالنقاط.",
   "Kutuyla veya serbest sınırla seçtiğin alan eksiksiz korunur. Noktayla nesne seçimi ayrı olarak modeli kullanır.": "تُحفظ المنطقة المحددة بمربع أو حدود حرة كاملةً. يستخدم تحديد الكائن بالنقاط النموذج بشكل منفصل.",
   "Kırpma sonucu": "نتيجة الاقتصاص",
-  "piksel ·": "بكسل ·"
+  "piksel ·": "بكسل ·",
+  "Serbest sınırla seçim": "التحديد بحدود حرة",
+  "Sarı halka başlangıç pikselidir. Seçim, renk toleransına uyan dört yönlü bağlı komşulara kuyruk sırasıyla yayılır; kopuk benzer renkler seçilmez.": "تحدد الحلقة الصفراء بكسل البداية. ينتشر التحديد حسب ترتيب الطابور عبر الجيران المتصلين في الاتجاهات الأربعة ضمن سماحية اللون؛ ولا تُحدد الألوان المتشابهة غير المتصلة.",
+  "Fotoğrafa dokun": "المس الصورة",
+  "Bağlı komşulara yayıl": "الانتشار عبر الجيران المتصلين",
+  "Bölgeyi çiz": "ارسم المنطقة",
+  "Sınırı şekillendir": "شكّل الحدود",
+  "Aşama ilerlemesi": "تقدم المرحلة",
+  "Aşamalar": "المراحل"
 }

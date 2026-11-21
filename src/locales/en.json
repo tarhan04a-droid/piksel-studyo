@@ -1306,5 +1306,13 @@
   "Zebra üzerinde alan çiz. Kenarın herhangi bir yerini sürükleyerek sınırı şekillendir; içindeki her şey korunur. Noktayla nesne seçimi için mevcut modeli yükleyebilirsin.": "Draw a region on the zebra photo. Drag anywhere on its edge to shape the contour; everything inside is kept. You can load the existing model for point-based object selection.",
   "Kutuyla veya serbest sınırla seçtiğin alan eksiksiz korunur. Noktayla nesne seçimi ayrı olarak modeli kullanır.": "The entire region selected with a box or freeform contour is kept. Point-based object selection uses the model separately.",
   "Kırpma sonucu": "Crop result",
-  "piksel ·": "pixels ·"
+  "piksel ·": "pixels ·",
+  "Serbest sınırla seçim": "Freeform selection",
+  "Sarı halka başlangıç pikselidir. Seçim, renk toleransına uyan dört yönlü bağlı komşulara kuyruk sırasıyla yayılır; kopuk benzer renkler seçilmez.": "The yellow ring marks the seed pixel. Selection spreads in queue order through four-connected neighbors within the color tolerance; disconnected similar colors are not selected.",
+  "Fotoğrafa dokun": "Tap the photo",
+  "Bağlı komşulara yayıl": "Expand through connected neighbors",
+  "Bölgeyi çiz": "Draw the region",
+  "Sınırı şekillendir": "Shape the boundary",
+  "Aşama ilerlemesi": "Stage progress",
+  "Aşamalar": "Stages"
 }
