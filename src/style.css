@@ -819,3 +819,39 @@ body[data-scene] header .header-actions :is(.account-trigger,.settings-trigger){
 body[data-scene] header .header-actions .settings-trigger span{font-size:inherit}
 body[data-scene] header .header-actions :is(.account-trigger,.settings-trigger)>svg{width:21px;height:21px;min-width:21px;flex-shrink:0}
 @media(max-width:700px){body[data-scene] header .header-actions{grid-column:1/-1;grid-row:3;justify-self:end;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:8px;width:264px;max-width:100%}body[data-scene] header .header-actions :is(.account-trigger,.settings-trigger){grid-row:auto;width:100%;max-width:none;height:36px;min-height:36px;padding:6px 9px;font-size:11px;gap:6px}body[data-scene] header .header-actions :is(.account-trigger,.settings-trigger)>svg{width:18px;height:18px;min-width:18px}}
+
+.clahe-controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.clahe-controls>button{flex:0 0 auto}.studio-hub .clahe-controls>.slider{flex:1 1 160px;min-width:0;margin:0}.clahe-controls .slider-heading{gap:8px}.clahe-controls .slider-heading label{font-size:12px}.clahe-controls input[type=range]{margin:6px 0 0}.clahe-controls .slider-heading input[type=number]{max-width:64px}
+
+/* Keep category symbols centered regardless of the glyph's font baseline. */
+body[data-scene] .studio-hub button.hub-category{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:8px;min-height:50px;height:100%;line-height:1.35}
+.studio-hub .hub-category-icon{line-height:1;margin:0;align-self:center}
+.studio-hub .hub-category>span:nth-child(2){min-width:0;overflow-wrap:anywhere}
+html[data-theme="light"] .image-reading{color:var(--button-ink,#153c43)}
+html[data-theme="light"] .image-reading :is(.cnn-explanation strong,.architecture-pipeline li>small,.architecture-key,.architecture-dimension,.learning-math h4){color:var(--button-ink,#153c43)}
+html[data-theme="light"] body[data-scene] .fine-math .cutout-actions button[aria-pressed="true"]{color:var(--button-ink,#153c43)!important;-webkit-text-fill-color:currentColor!important;outline:2px solid currentColor;outline-offset:2px}
+html[data-theme="light"] .math-graphs svg{color:#175d62}
+html[data-theme="light"] .math-graphs svg>path[stroke]{stroke:#527779}
+html[data-theme="light"] .math-graphs rect[fill="#899c91"]{fill:#53636b}
+html[data-theme="light"] .math-graphs rect[fill="#6caf94"]{fill:#18765b}
+html[data-theme="light"] .math-graphs circle{fill:#8a5b00}
+
+.sam-input canvas{touch-action:none;cursor:crosshair}
+.sam-box-selection{position:absolute;pointer-events:none;border:2px solid #fff;outline:1px solid #153c43;box-shadow:0 0 0 9999px #071d2438;border-radius:4px;z-index:1}
+.sam-input{overflow:hidden}
+.sam-point{z-index:2}
+
+.cutout-previews canvas{image-rendering:auto}
+
+.adjustable-selection{position:absolute;z-index:4;box-sizing:border-box;border:2px solid #fff;border-radius:3px;outline:1px solid #153c4370;pointer-events:none;touch-action:none}
+html body[data-scene] .adjustable-selection button{position:absolute!important;margin:0!important;padding:0!important;min-width:0!important;min-height:0!important;max-width:none!important;border:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;transition:none!important;touch-action:none;pointer-events:auto}
+html body[data-scene] .adjustable-selection button:before,html body[data-scene] .adjustable-selection button:after{content:none!important}
+html body[data-scene] .adjustable-selection .rect-move{inset:0;width:100%!important;height:100%!important;border-radius:0!important;cursor:move}
+html body[data-scene] .adjustable-selection .rect-handle{width:28px!important;height:28px!important;border-radius:50%!important;transform:translate(-50%,-50%)!important;background:radial-gradient(circle,#fff 0 4px,#153c43 4px 5px,transparent 6px)!important}
+.rect-nw{left:0;top:0;cursor:nwse-resize}.rect-n{left:50%;top:0;cursor:ns-resize}.rect-ne{left:100%;top:0;cursor:nesw-resize}.rect-e{left:100%;top:50%;cursor:ew-resize}.rect-se{left:100%;top:100%;cursor:nwse-resize}.rect-s{left:50%;top:100%;cursor:ns-resize}.rect-sw{left:0;top:100%;cursor:nesw-resize}.rect-w{left:0;top:50%;cursor:ew-resize}
+html body[data-scene] .adjustable-selection button:focus-visible{outline:2px solid #e3c169!important;outline-offset:2px}
+
+
+.adjustable-selection{inset:0;width:100%;height:100%;border:0;outline:0;transform:none}
+.adjustable-selection>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;filter:drop-shadow(0 0 1px #153c43)}
+
+.adjustable-selection>svg{z-index:1}.adjustable-selection .rect-edge-hit{pointer-events:stroke;cursor:crosshair;touch-action:none}.adjustable-selection .rect-handle{z-index:2;cursor:grab}

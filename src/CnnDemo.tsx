@@ -1,3 +1,4 @@
+import {LearningMath} from './LearningMath';
 import ReadingGif from './ReadingGif';
 import AdvancedCnn from './AdvancedCnn';
 import {useQuizCompleted} from './quizProgress';
@@ -28,20 +29,13 @@ export default function CnnDemo({showMatrix=false}:{showMatrix?:boolean}){useLan
  <ol className="cnn-pipeline" aria-label={t('CNN işlem aşamaları')}>{names.map((name,i)=><li key={i} className={stage===i?'active':stage>i?'complete':''}><button onClick={()=>{setPlaying(false);setFrame(i*40)}} aria-current={stage===i?'step':undefined}>{fmt(i+1)} · {t(name)}</button>{i===0?<img src="/images/cnn/zebra.webp" alt={t('CNN için üretilmiş zebra fotoğrafı')} loading="lazy"/>:i<7?<div className="cnn-map-stack">{stages[i]?.map((map,j)=><FeatureMap key={j} map={map} progress={stage>i?1:stage===i?progress:0}/>)}</div>:i===7?<div className="cnn-vector" aria-hidden="true">{flat.map((value,j)=><i key={j} style={{opacity:stage>i||stage===i&&j<=progress*12?1:.15,background:`rgb(60,${Math.min(255,70+value*170)},160)`}}/>)}</div>:i===8?<svg viewBox="0 0 120 110" className="cnn-network" aria-hidden="true">{Array.from({length:12},(_,a)=>Array.from({length:6},(_,b)=><line key={`${a}-${b}`} x1="12" y1={a*8+10} x2="105" y2={b*17+12} className={stage>8||stage===8&&b<=progress*6?'lit':''}/>))}{Array.from({length:6},(_,j)=><circle key={j} cx="105" cy={j*17+12} r="5" className={stage>8||stage===8&&j<=progress*6?'lit':''}/>)}</svg>:<div className="cnn-scores">{probabilities.map((value,j)=><div key={j}><span>{String.fromCharCode(65+j)}</span><i style={{width:`${(stage===9?progress:0)*value*100}%`}}/><small>{stage===9?fmt(value*progress*100,1)+'%':'—'}</small></div>)}</div>}<small dir="ltr">{i===0?'32 × 32':i<7?`${stages[i]?.[0].size||'—'} × ${stages[i]?.[0].size||'—'} × 3`:i===7?'12':i===8?'12 → 6':'6 → 3'}</small></li>)}</ol>
  <div className="cnn-explanation" role="status"><strong>{t(names[stage])}</strong><p>{t(descriptions[stage])}</p></div>
  {input&&stage<7&&<div className="cnn-inspector"><div><h3>{t('Taranan bölge')}</h3><FeatureMap map={stage===0?input:stages[stage-1][0]} windowAt={progress} windowSize={stage===0?1:stage%2?3:2} stride={stage>0&&stage%2===0?2:1}/></div><div><h3>{t('Örnek kernel')}</h3><div className="cnn-kernel" dir="ltr">{kernels[0].map((n,i)=><span key={i}>{fmt(n/4,2)}</span>)}</div><p>{t('Kernel: 3 × 3 · stride: 1 · padding: 0. Pooling: 2 × 2 · stride: 2.')}</p></div></div>}
- {showMatrix&&activeMap&&<div className="machine-matrix"><h3>{t('Kod / matris')}</h3>{stage<7&&activeMaps.length>1&&<label>{t('Özellik kanalı')}<select value={matrixChannel} onChange={e=>setMatrixChannel(Number(e.target.value))}>{[0,1,2].map(i=><option key={i} value={i}>{fmt(i+1)}</option>)}</select></label>}<pre dir="ltr"><code>{stage<7?`${t(names[stage])} · ${activeMap.size} × ${activeMap.size}
+ {showMatrix&&<LearningMath formula={stage===0?'Y = (0.299R + 0.587G + 0.114B) / 255':stage<7?(stage%2?'s(x,y) = Σᵤᵥ I(x+u,y+v) K(u,v) / 4\na(x,y) = max(0, s(x,y))\nHout = H − 3 + 1':'P(x,y) = max { I(2x+u,2y+v) : u,v ∈ {0,1} }\nHout = floor(H/2)'):stage===7?'v = vec(X),  3 × 2 × 2 = 12':stage===8?'hᵢ = max(0, Σⱼ Wᵢⱼ vⱼ + bᵢ)':'pᵢ = exp(zᵢ − max(z)) / Σⱼ exp(zⱼ − max(z))'} example={stage===0?'R = G = B = 128 → Y = 128/255 ≈ 0.502':stage<7?(stage%2?'I = [0 0 1; 0 0 1; 0 0 1]\nK = [−1 0 1; −2 0 2; −1 0 1]\ns = 4/4 = 1 → ReLU(s) = 1':'max([0.1, 0.8; 0.3, 0.2]) = 0.8'):stage===7?`3 × 2 × 2 → ${flat.length}`:stage===8?'max(0, 0.5 × 2 − 0.25 × 4 + 0.1) = 0.1':`Σ pᵢ = ${probabilities.reduce((a,b)=>a+b,0).toFixed(4)}`} meaning={descriptions[stage]}/>}
+ {showMatrix&&activeMap&&<div className="machine-matrix"><h3>{t('Matematik ve değerler')}</h3>{stage<7&&activeMaps.length>1&&<label>{t('Özellik kanalı')}<select value={matrixChannel} onChange={e=>setMatrixChannel(Number(e.target.value))}>{[0,1,2].map(i=><option key={i} value={i}>{fmt(i+1)}</option>)}</select></label>}<pre dir="ltr"><code>{stage<7?`${t(names[stage])} · ${activeMap.size} × ${activeMap.size}
 `+Array.from({length:activeMap.size},(_,y)=>activeMap.values.slice(y*activeMap.size,(y+1)*activeMap.size).map(value=>value.toFixed(2).padStart(6)).join(' ')).join('\n'):stage===7?`flatten (3 × 2 × 2 → 12)
-[${flat.map(value=>value.toFixed(3)).join(', ')}]`:stage===8?`dense = ReLU(W × flatten + bias)
-[${dense.map(value=>value.toFixed(3)).join(', ')}]`:`softmax(logits)
+[${flat.map(value=>value.toFixed(3)).join(', ')}]`:stage===8?`h = max(0, Wv + b)
+[${dense.map(value=>value.toFixed(3)).join(', ')}]`:`pᵢ = exp(zᵢ) / Σⱼ exp(zⱼ)
 [${probabilities.map(value=>value.toFixed(4)).join(', ')}]
-sum = ${probabilities.reduce((a,b)=>a+b,0).toFixed(4)}`}</code></pre><pre dir="ltr"><code>{`# educational pseudocode
-x = grayscale(image, size=(32, 32))
-for block in range(3):
-    x = relu(depthwise_conv(x, kernel, stride=1, padding=0))
-    x = max_pool(x, size=2, stride=2)
-v = flatten(x)
-h = relu(W1 @ v + bias)
-output = softmax(W2 @ h)
-# fixed demonstration weights, not trained`}</code></pre></div>}
+Σ pᵢ = ${probabilities.reduce((a,b)=>a+b,0).toFixed(4)}`}</code></pre></div>}
  {analysisUnlocked?<AdvancedCnn stage={stage} stages={stages} kernels={kernels} flat={flat} dense={dense} probabilities={probabilities}/>:<p>{t('CNN hesaplarını incelemek için oyun merkezindeki derin analiz testini tamamla.')}</p>}
  <p className="cnn-note">{t('Eğitim gösterimi: filtreler sabittir, ağ eğitilmemiştir. Convolution, ReLU, pooling, flatten ve örnek ağırlıklarla Softmax gerçekten hesaplanır; A/B/C skorları bir hayvan sınıflandırıcısı değildir.')}</p>
  </section>;

@@ -1,9 +1,9 @@
 /// <reference lib="webworker" />
 export {};
 // GIF89a with a content-adaptive global palette. Clear codes keep LZW at 9 bits.
-self.onmessage=(event:MessageEvent<{frames:Uint8ClampedArray[];width:number;height:number}>)=>{
+self.onmessage=(event:MessageEvent<{frames:Uint8ClampedArray[];width:number;height:number;delays?:number[]}>)=>{
  try{
-  const{frames,width,height}=event.data;if(!frames.length||frames.length>40||width*height>400000||frames.length*width*height>16000000)throw new Error('GIF limits');
+  const{frames,width,height,delays}=event.data;if(!frames.length||frames.length>40||width*height>400000||frames.length*width*height>16000000)throw new Error('GIF limits');
   // Weighted median-cut over sampled RGB555 colors preserves the device palette.
   const histogram=new Uint32Array(32768);for(const frame of frames)for(let i=0;i<frame.length;i+=16)histogram[(frame[i]>>3)<<10|(frame[i+1]>>3)<<5|frame[i+2]>>3]++;
   type Color={r:number;g:number;b:number;n:number};type Bucket={colors:Color[];axis:'r'|'g'|'b';score:number};
@@ -18,9 +18,9 @@ self.onmessage=(event:MessageEvent<{frames:Uint8ClampedArray[];width:number;heig
   ascii('GIF89a');word(width);word(height);put(0xf7,0,0);
   for(const color of palette)put(...color);
   put(0x21,0xff,11);ascii('NETSCAPE2.0');put(3,1,0,0,0);
-  for(const frame of frames){
+  for(const [frameIndex,frame] of frames.entries()){
    if(frame.length!==width*height*4)throw new Error('GIF frame');
-   put(0x21,0xf9,4,4);word(50);put(0,0,0x2c);word(0);word(0);word(width);word(height);put(0,8);
+   put(0x21,0xf9,4,4);word(Math.round(Math.max(20,Math.min(10000,delays?.[frameIndex]??500))/10));put(0,0,0x2c);word(0);word(0);word(width);word(height);put(0,8);
    const compressed:number[]=[];let buffer=0,bits=0,count=0;
    const code=(value:number)=>{buffer|=value<<bits;bits+=9;while(bits>=8){compressed.push(buffer&255);buffer>>>=8;bits-=8}};
    code(256);

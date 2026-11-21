@@ -1,0 +1,54 @@
+.learning-math{margin:24px 0;padding:20px;border:1px solid var(--button-edge,#79948766);border-radius:16px;background:var(--button-glass-bottom,#ffffff05);min-width:0}.learning-math h3{margin:0 0 16px}.learning-math h4{margin:18px 0 8px}.math-formula,.math-example{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.9 'JetBrains Mono',monospace;padding:12px 16px;border-inline-start:3px solid #61b9bc;background:#7399aa10}.math-example{font-size:13px;border-color:#c6a95b}.learning-math p{line-height:1.7;margin-bottom:0}.filter-pictures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:20px 0}.filter-pictures figure{margin:0;min-width:0}.filter-pictures canvas{width:100%;max-width:320px;image-rendering:pixelated;display:block;border:1px solid #79948766;border-radius:8px}.filter-pictures figcaption{margin:10px 0}.filter-settings{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0}.filter-settings label{display:flex;gap:10px;align-items:center}.filter-stages{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.filter-histogram{display:flex;gap:4px;height:110px;align-items:end;margin:18px 0}.filter-histogram i{flex:1;background:#61b9bc;min-height:1px}.filter-demo .learning-math{margin-top:18px}@media(max-width:600px){.learning-math{padding:16px}.math-formula,.math-example{font-size:12px;padding:10px}.filter-pictures{gap:12px}}
+.learning-hub{padding:20px;border:1px solid var(--button-edge,#79948766);border-radius:18px;margin-block:20px}.learning-hub>.hub-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}.image-reading .learning-hub button.learning-category{display:grid;grid-template-columns:28px minmax(0,1fr);align-items:center;gap:10px;min-width:0;width:100%;min-height:64px;height:100%;margin:0;padding:12px;text-align:start;line-height:1.35;box-sizing:border-box}.learning-category>span:last-child{min-width:0;overflow-wrap:anywhere}.learning-category .hub-category-icon{display:grid;place-items:center;width:28px;height:28px;margin:0}.learning-hub .learning-category.selected{outline:1px solid currentColor}.learning-hub .reading-selector{display:flex;flex-wrap:wrap;gap:10px}.learning-hub .reading-matrix-toggle{margin-top:18px}.learning-hub h2{font-size:18px;margin:22px 0 14px}.filter-settings input[type=number]{min-width:100px;max-width:220px;width:100%;padding:10px}@media(max-width:900px){.learning-hub>.hub-categories{grid-template-columns:repeat(2,minmax(0,1fr))}.learning-hub{padding:14px}.image-reading .learning-hub button.learning-category{font-size:13px;gap:8px}}
+
+.segmentation-learning-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:20px 0}.segmentation-learning-controls label{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.segmentation-learning-controls input[type=color]{width:60px;height:44px;padding:3px;cursor:pointer}.segmentation-learning-controls p{flex-basis:100%;margin:0}.filter-pictures canvas[role=button]{cursor:crosshair}.filter-pictures canvas[role=button]:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+
+.image-color-palette{flex-basis:100%;min-width:0;border:0;padding:0;margin:0}.image-color-palette legend{padding:0;margin-bottom:10px}.image-color-palette>div{display:flex;gap:8px;flex-wrap:wrap}body[data-scene] :is(.image-reading,.studio-hub) button.image-color-choice{position:relative;min-width:44px;width:44px;min-height:44px;height:44px;padding:5px!important;box-sizing:border-box;border-radius:10px}.image-color-choice>span{display:block;width:100%;height:100%;border-radius:5px;border:1px solid #9c9c9c66;box-sizing:border-box}.image-color-choice>b{position:absolute;inset:0;display:grid;place-items:center;color:white!important;text-shadow:0 1px 2px black,1px 0 2px black}.image-color-palette>p{display:flex;align-items:center;gap:8px;margin-top:10px}.selected-color-dot{display:inline-block;width:18px;height:18px;border:1px solid #aaa;border-radius:4px}
+.learning-hub>.hub-categories>.learning-category:last-child:nth-child(odd){grid-column:1 / -1}
+
+/* Shared learning surfaces inherit the active theme ink, including formulas. */
+:is(.learning-math,.architecture-demo,.cnn-demo,.filter-demo,.operation-learning){color:var(--button-ink,#e3eee9)}
+html[data-theme="light"] :is(.learning-math,.architecture-demo,.cnn-demo,.filter-demo,.operation-learning){color:var(--button-ink,#153c43)}
+.learning-math :is(h4,.math-formula,.math-example){color:inherit}
+body[data-scene] :is(.image-reading,.studio-hub) button.image-color-choice{display:block;flex:0 0 44px;max-width:44px;line-height:1;margin:0}
+body[data-scene] :is(.image-reading,.studio-hub) button.image-color-choice>span{display:block;width:32px;height:32px;min-width:32px;min-height:32px;margin:0;padding:0;border-radius:5px}
+body[data-scene] .image-color-choice>b{-webkit-text-fill-color:white!important;pointer-events:none}
+html[data-theme="light"] .architecture-pipeline li:not(.active):not(.complete) canvas{opacity:.8}
+html[data-theme="light"] .architecture-key i{background:#147b82}
+html[data-theme="light"] .architecture-key i:nth-of-type(2){background:#7950a2}
+html[data-theme="light"] .architecture-key i:nth-of-type(3){background:#866113}
+
+/* Rounded learning controls and a sliding mask display selector. */
+body[data-scene] :is(.image-reading,.studio-hub) button.image-color-choice>span{border-radius:50%}
+body[data-scene] :is(.image-reading,.studio-hub) button.image-color-choice{border-radius:50%!important}
+.selected-color-dot{border-radius:50%;flex-shrink:0}
+body[data-scene] .image-reading .filter-settings input[type="number"]{border:1px solid var(--button-edge);border-radius:999px;background:var(--control-fill,var(--button-glass-top));color:var(--button-ink);min-height:44px;padding:10px 16px;font:inherit;max-width:100%}
+.filter-settings .glass-select{min-width:120px;max-width:100%}
+body[data-scene] :is(.image-reading,.studio-hub,.object-cutout) button.mask-view-switch{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;align-items:center;width:280px;max-width:100%;min-height:46px;padding:4px;border:1px solid var(--button-edge);border-radius:999px!important;background:var(--control-fill,var(--button-glass-bottom))!important;color:var(--button-ink);font-size:13px;line-height:1.4;overflow:hidden}
+.mask-view-switch>span:not(.mask-view-thumb){position:relative;z-index:1;padding:7px 6px;min-width:0}
+.mask-view-switch .mask-view-thumb{position:absolute;z-index:0;inset-block:4px;inset-inline-start:4px;width:calc(50% - 4px);border-radius:999px;background:linear-gradient(150deg,var(--button-accent-top),var(--button-accent-bottom));border:1px solid var(--button-accent-edge);box-shadow:0 2px 5px #0002;transition:inset-inline-start .2s ease}
+.mask-view-switch.is-mask .mask-view-thumb{inset-inline-start:50%}
+@media(prefers-reduced-motion:reduce){.mask-view-switch .mask-view-thumb{transition:none}}
+
+.tool-learning-steps{padding-inline-start:24px;display:grid;gap:16px}.tool-learning-steps>li{padding:16px;border:1px solid var(--button-edge);border-radius:24px;background:var(--button-glass-bottom)}.tool-learning-steps h3{margin:0 0 8px}.tool-learning-steps p{margin:0}
+
+.tool-animation>canvas{width:100%;height:auto;border:1px solid var(--button-edge);border-radius:24px;background:var(--button-glass-bottom)}
+
+.learning-hub>.hub-categories>.learning-model-classifiers{grid-column:1 / span 2}
+.learning-hub>.hub-categories>.learning-model-generators{grid-column:span 2}
+@media(max-width:900px){.learning-hub>.hub-categories>.learning-model-classifiers{grid-column:1}.learning-hub>.hub-categories>.learning-model-generators{grid-column:2}}
+
+.tool-animation video{display:block;width:min(100%,480px);max-height:480px;object-fit:contain;border:1px solid var(--button-edge);border-radius:24px;margin:16px auto;background:#102028}
+
+.video-rate-slider{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0}.video-rate-slider input{flex:1;min-width:140px;max-width:100%}
+
+.tool-audio-example{margin:16px 0;padding:16px;border:1px solid var(--button-edge);border-radius:24px}.tool-audio-example audio{display:block;width:100%}
+
+.video-add-audio{margin:16px 0;padding:16px;border:1px solid var(--button-edge);border-radius:24px}.video-add-audio label{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.video-add-audio input{max-width:100%}
+
+
+/* Learning text follows each interface's ink in both day and night modes. */
+body[data-scene] :is(.image-reading,.object-cutout,.crop-tool){color:var(--button-ink,#e3eee9)}
+body[data-scene] :is(.image-reading,.object-cutout,.crop-tool) :is(p,small,label,legend,figcaption,output,.control-help,.architecture-dimension,.architecture-key){color:inherit}
+body[data-scene] :is(.image-reading,.object-cutout,.crop-tool) :is(input:not([type=range]):not([type=checkbox]):not([type=radio]),select,select option){color:var(--button-ink,#e3eee9);background:var(--bg,#070d19)}
+.crop-learning figure{margin:20px 0}.crop-learning figure img{display:block;max-width:100%;max-height:480px;object-fit:contain;background:repeating-conic-gradient(#e4e4e4 0% 25%,#b8b8b8 0% 50%) 0 0/16px 16px}.crop-learning figcaption{margin-top:12px}.crop-learning .crop-tool{background:transparent;padding-inline:0}

@@ -1,0 +1,13 @@
+import MaskViewSwitch from './MaskViewSwitch';
+import {useEffect,useMemo} from 'react';
+import {hsv,type Settings} from './engine';
+import {imageColorPalette} from './imageColorPalette';
+import {t,useLanguage} from './i18n';
+import './learningMath.css';
+export default function StudioSegmentation({image,settings,onChange}:{image:ImageData;settings:Settings;onChange:(patch:Partial<Settings>)=>void}){
+ useLanguage();const colors=useMemo(()=>imageColorPalette(image),[image]),color=settings.segmentColor||colors[0]||'',tolerance=settings.segmentTolerance??25;
+ const selectedExists=useMemo(()=>{const selected=settings.segmentColor;if(!/^#[0-9a-f]{6}$/i.test(selected))return false;const r=parseInt(selected.slice(1,3),16),g=parseInt(selected.slice(3,5),16),b=parseInt(selected.slice(5,7),16);for(let i=0;i<image.data.length;i+=4)if(image.data[i]===r&&image.data[i+1]===g&&image.data[i+2]===b&&image.data[i+3]>=128)return true;return false},[image,settings.segmentColor]);
+ useEffect(()=>{if(settings.segment&&colors.length&&!selectedExists)onChange({segmentColor:colors[0]})},[settings.segment,selectedExists,colors,onChange]);
+ const target=color?hsv(parseInt(color.slice(1,3),16),parseInt(color.slice(3,5),16),parseInt(color.slice(5,7),16)):[0,0,0],palette=colors.includes(color)||!color?colors:[color,...colors].slice(0,13);
+ return <><p className="control-help">{t('Fotoğraftaki renklerden birini seç. Eşleşen alanları vurgulayabilir veya ikili maske olarak görebilirsin.')}</p><button className={settings.segment?'chosen tool-button':'tool-button'} aria-pressed={settings.segment} onClick={()=>onChange({segment:!settings.segment})}>{t(settings.segment?'Bölütlemeyi kapat':'Bölütlemeyi aç')}</button>{settings.segment&&<div className="segmentation-learning-controls"><fieldset className="image-color-palette"><legend>{t('Fotoğraftaki renkler')}</legend><div>{palette.map(c=><button type="button" className="image-color-choice" key={c} aria-label={`${t('Seçilecek renk')} · ${c}`} title={c} aria-pressed={c===color} onClick={()=>onChange({segmentColor:c})}><span style={{backgroundColor:c}} aria-hidden="true"/>{c===color&&<b aria-hidden="true">✓</b>}</button>)}</div><p><span className="selected-color-dot" style={{backgroundColor:color}} aria-hidden="true"/>{t('Seçilecek renk')}: <bdi dir="ltr">{color}</bdi></p></fieldset><label>{t('Renk tonu toleransı')} · {tolerance}°<input type="range" min="5" max="60" disabled={target[1]<.15} value={tolerance} onChange={e=>onChange({segmentTolerance:+e.target.value})}/></label><MaskViewSwitch mask={!settings.segmentHighlight} onChange={mask=>onChange({segmentHighlight:!mask})}/><p className="control-help">{t('Gri tonlarda renk tonu yerine doygunluk ve parlaklık karşılaştırılır.')}</p></div>}</>;
+}

@@ -1,18 +1,19 @@
 import {captionLines,drawCaption} from './gifCaption';
-type Options={pixels:number[][];modern:boolean;light:boolean;title:string;rowLabel:string;columnLabel:string;describe:(index:number)=>string};
+type Options={pixels:number[][];source?:HTMLImageElement;modern:boolean;light:boolean;title:string;rowLabel:string;columnLabel:string;describe:(index:number)=>string};
 /** Draw exports directly at their final resolution: no screenshot or DOM rasterizer. */
-export async function drawRgbTvGif({pixels,modern,light,title,rowLabel,columnLabel,describe}:Options){
- const width=640,canvas=document.createElement('canvas');canvas.width=width;const ctx=canvas.getContext('2d');if(!ctx||pixels.length!==96)throw Error('RGB pixels');
- ctx.font='13px sans-serif';const height=418+Math.max(...Array.from({length:96},(_,i)=>captionLines(ctx,describe(i),588).length))*18;canvas.height=height;
+export async function drawRgbTvGif({pixels,source,modern,light,title,rowLabel,columnLabel,describe}:Options){
+ const columns=32,rows=32,total=columns*rows;
+ const width=640,canvas=document.createElement('canvas');canvas.width=width;const ctx=canvas.getContext('2d');if(!ctx||pixels.length!==total)throw Error('RGB pixels');
+ ctx.font='13px sans-serif';const height=418+Math.max(...Array.from({length:total},(_,i)=>captionLines(ctx,describe(i),588).length))*18;canvas.height=height;
  const frames:Uint8ClampedArray[]=[];
  const ink=modern?(light?'#39264d':'#faf0de'):'#d8e4c9',muted=modern?(light?'#675274':'#c8b9cf'):'#a7b5a0',gold=light&&modern?'#795b1b':'#d9bc70';
  function gradient(x:number,y:number,w:number,h:number,colors:string[]){const g=ctx!.createLinearGradient(x,y,x+w,y+h);colors.forEach((c,i)=>g.addColorStop(i/(colors.length-1),c));return g}
  function round(x:number,y:number,w:number,h:number,r:number,fill:string|CanvasGradient,stroke?:string){ctx!.beginPath();ctx!.roundRect(x,y,w,h,r);ctx!.fillStyle=fill;ctx!.fill();if(stroke){ctx!.strokeStyle=stroke;ctx!.lineWidth=1;ctx!.stroke()}}
  function text(value:string,x:number,y:number,size=12,color=ink,bold=false){ctx!.fillStyle=color;ctx!.font=`${bold?'600 ':''}${size}px sans-serif`;ctx!.fillText(value,x,y)}
  function circle(x:number,y:number,r:number,fill:string,stroke?:string){ctx!.beginPath();ctx!.arc(x,y,r,0,Math.PI*2);ctx!.fillStyle=fill;ctx!.fill();if(stroke){ctx!.strokeStyle=stroke;ctx!.stroke()}}
- function grid(x:number,y:number,w:number,h:number,at:number){const cw=w/12,ch=h/8;pixels.forEach((p,i)=>{ctx!.fillStyle=`rgb(${p.join(',')})`;ctx!.fillRect(x+i%12*cw,y+Math.floor(i/12)*ch,Math.ceil(cw),Math.ceil(ch))});const sx=x+at%12*cw,sy=y+Math.floor(at/12)*ch;ctx!.lineWidth=3;ctx!.strokeStyle='#07191e';ctx!.strokeRect(sx+2,sy+2,cw-4,ch-4);ctx!.lineWidth=1.5;ctx!.strokeStyle='#fff9db';ctx!.strokeRect(sx+.75,sy+.75,cw-1.5,ch-1.5)}
+ function grid(x:number,y:number,w:number,h:number,at:number){const cw=w/columns,ch=h/rows;if(source){ctx!.imageSmoothingEnabled=true;ctx!.imageSmoothingQuality='high';ctx!.drawImage(source,x,y,w,h)}else pixels.forEach((p,i)=>{ctx!.fillStyle=`rgb(${p.join(',')})`;ctx!.fillRect(x+i%columns*cw,y+Math.floor(i/columns)*ch,Math.ceil(cw),Math.ceil(ch))});const sx=x+at%columns*cw,sy=y+Math.floor(at/columns)*ch;ctx!.lineWidth=2;ctx!.strokeStyle='#07191e';ctx!.strokeRect(sx,sy,cw,ch);ctx!.lineWidth=1;ctx!.strokeStyle='#fff9db';ctx!.strokeRect(sx+1,sy+1,cw-2,ch-2)}
  for(let frame=0;frame<32;frame++){
-  const at=Math.round(frame*95/31),rgb=pixels[at];ctx.fillStyle=modern?gradient(0,0,640,height,light?['#fdf8f0','#f3e5d1','#e8d5f0']:['#251334','#160e24','#302039']):gradient(0,0,640,height,['#071c22','#0b131b','#102b2b']);ctx.fillRect(0,0,width,height);
+  const at=Math.round(frame*(total-1)/31),rgb=pixels[at];ctx.fillStyle=modern?gradient(0,0,640,height,light?['#fdf8f0','#f3e5d1','#e8d5f0']:['#251334','#160e24','#302039']):gradient(0,0,640,height,['#071c22','#0b131b','#102b2b']);ctx.fillRect(0,0,width,height);
   // Quiet surface texture; the animation is in the scan, not in decoration.
   ctx.fillStyle=modern?(light?'#9c814c18':'#dbc27c12'):'#9cc7b612';for(let x=12;x<640;x+=12)for(let y=12;y<height;y+=12)ctx.fillRect(x,y,1,1);
   text('P O L L M E K   /   '+(modern?'VISION 02':'COLOURVISION 01'),26,24,9,gold);text(title,26,52,22,ink,true);
@@ -22,7 +23,7 @@ export async function drawRgbTvGif({pixels,modern,light,title,rowLabel,columnLab
    ctx.save();ctx.shadowColor='#00000066';ctx.shadowBlur=15;ctx.shadowOffsetY=9;round(24,75,490,234,4,gradient(24,75,490,234,['#a5988a','#292431','#0b0a0e','#9e8d73']),'#c6ad73');ctx.restore();
    round(28,79,482,214,1,'#09090d');ctx.save();ctx.beginPath();ctx.rect(28,79,482,214);ctx.clip();grid(28,79,482,214,at);ctx.fillStyle=gradient(28,79,482,214,['#ffffff16','#ffffff00']);ctx.fillRect(28,79,482,214);ctx.restore();
    
-   ctx.fillStyle='#0c0b12';ctx.fillRect(28,293,482,12);text(`RGB · ${String(at+1).padStart(2,'0')} / 96`,38,302,8,'#e8d5a3');text('P O L L M E K',227,302,6,'#d9bc70');circle(499,299,1.5,'#d9bc70');
+   ctx.fillStyle='#0c0b12';ctx.fillRect(28,293,482,12);text(`RGB · ${String(at+1).padStart(2,'0')} / ${total}`,38,302,8,'#e8d5a3');text('P O L L M E K',227,302,6,'#d9bc70');circle(499,299,1.5,'#d9bc70');
    for(const x of [91,421]){ctx.fillStyle=gradient(x,309,35,16,['#82727d','#21182a']);ctx.beginPath();ctx.moveTo(x+12,309);ctx.lineTo(x+23,309);ctx.lineTo(x+35,325);ctx.lineTo(x,325);ctx.closePath();ctx.fill()}
    ctx.restore();
   }else{
@@ -39,7 +40,7 @@ export async function drawRgbTvGif({pixels,modern,light,title,rowLabel,columnLab
   }
   // Numeric readout and meters are driven by exactly the highlighted source pixel.
   const cardY=342;['R','G','B'].forEach((name,i)=>{const x=26+i*198,color=['#ef5875','#48c88d','#599df2'][i];round(x,cardY,184,43,10,modern?(light?'#fffaf0dd':'#130d20bb'):'#122721','#8c8b7040');text(name,x+12,cardY+18,11,color,true);text(String(rgb[i]),x+37,cardY+19,16,ink,true);ctx.fillStyle=modern?(light?'#d8cbbb':'#47344e'):'#334c3b';ctx.fillRect(x+12,cardY+29,160,4);ctx.fillStyle=color;ctx.fillRect(x+12,cardY+29,160*rgb[i]/255,4)});
-  text(`${rowLabel} ${Math.floor(at/12)+1}  ·  ${columnLabel} ${at%12+1}`,modern?386:295,modern?330:337,10,muted);ctx.fillStyle=ink;ctx.font='13px sans-serif';drawCaption(ctx,describe(at),26,410,588);frames.push(ctx.getImageData(0,0,width,height).data);await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
+  text(`${rowLabel} ${Math.floor(at/columns)+1}  ·  ${columnLabel} ${at%columns+1}`,modern?386:295,modern?330:337,10,muted);ctx.fillStyle=ink;ctx.font='13px sans-serif';drawCaption(ctx,describe(at),26,410,588);frames.push(ctx.getImageData(0,0,width,height).data);await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
  }
  return{frames,width,height};
 }

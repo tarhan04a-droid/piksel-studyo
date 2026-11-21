@@ -1,9 +1,9 @@
-import {captionLines,drawCaption} from './gifCaption';
+import {drawMathBlock,drawCaption} from './gifCaption';
 import {useEffect,useRef,useState} from 'react';
 import ReadingGif from './ReadingGif';
 import {t,useLanguage} from './i18n';
 import './architecture.css';
-import implementationSource from './ArchitectureDemo.tsx?raw';
+import {LearningMath,architectureMath} from './LearningMath';
 type Step={name:string;description:string;visual:string;code:string};
 const s=(name:string,description:string,visual:string,code:string):Step=>({name,description,visual,code});
 const encoder=[
@@ -26,6 +26,7 @@ const flows:Record<string,{title:string;steps:Step[];source:string}>={
 };
 // Each model is one continuous route, including its internal blocks and decoder.
 export const architectures:typeof flows={
+ ...flows,
  vit:{...flows.vit,steps:[...flows.vit.steps.slice(0,3),...flows.encoder.steps,flows.vit.steps[4]]},
  dit:{...flows.dit,steps:[...flows.dit.steps.slice(0,2),...flows.ditblock.steps,flows.dit.steps[3],...flows.vae.steps]},
  llm:{...flows.llm,steps:[flows.llm.steps[0],...flows.causal.steps,flows.llm.steps[2],...flows.vq.steps.slice(1)]},
@@ -47,6 +48,7 @@ function softmax(values:number[]){const max=Math.max(...values),exp=values.map(v
 const palette=['#61d7dc','#ae82e9','#e7c569','#8dd9b2'];
 const flowDimensions:Record<string,string[]>={vit:['4 × 4 yama','16 × D','17 × D · CLS + 16','17 × D → 17 × D','D → 3 örnek skor'],encoder:['N × D','Q · K · V → N × D','x + Attention(x)','D → 4D → D','x + MLP(x)'],dit:['zₜ + zaman + sınıf','N × D','N × D → N × D','t → t − 1 → … → 0','latent → RGB'],ditblock:['γ · β · α','x + α × Attention','D → 4D → D','x + α × MLP'],llm:['Metin → tokenlar','Alt üçgen dikkat','ID₁ → ID₂ → ID₃ → …','ID → D özellik','Izgara → RGB'],causal:['QKᵀ / √d','Gelecek = −∞','Σ her satır = 1'],i2i:['RGB → latent','z → zₜ','zₜ → … → z₀','latent → RGB','Çıktı → yeni girdi'],vae:['C × H × W','C × H × W','H → 2H → 4H','3 × H × W'],vq:['412 · 809 · 153 · 992','ID → aynı vektör','N × D → H × W × D','Izgara → RGB']};
 const dimensions:typeof flowDimensions={
+ ...flowDimensions,
  vit:[...flowDimensions.vit.slice(0,3),...flowDimensions.encoder,flowDimensions.vit[4]],
  dit:[...flowDimensions.dit.slice(0,2),...flowDimensions.ditblock,flowDimensions.dit[3],...flowDimensions.vae],
  llm:[flowDimensions.llm[0],...flowDimensions.causal,flowDimensions.llm[2],...flowDimensions.vq.slice(1)],
@@ -63,10 +65,11 @@ function visualBranch(step:Step){
  return step.visual;
 }
 // The same stage renderer is used by the cards, inspector and GIF export.
-function drawVisual(ctx:CanvasRenderingContext2D,step:Step,progress:number,image:HTMLImageElement|null,ink='#e3eee9'){
+function drawVisual(ctx:CanvasRenderingContext2D,step:Step,progress:number,image:HTMLImageElement|null,ink='#e3eee9',light=false){
+ const palette=light?['#147b82','#7950a2','#866113','#217b54']:['#61d7dc','#ae82e9','#e7c569','#8dd9b2'];
  const features=patchFeatures(image);const selected=Math.min(15,Math.floor(progress*16));
  ctx.clearRect(0,0,380,240);ctx.lineWidth=2;ctx.font='13px sans-serif';ctx.textAlign='center';
- const text=(value:string,x:number,y:number,color=ink)=>{ctx.fillStyle=color;ctx.fillText(value,x,y)};
+ const text=(value:string,x:number,y:number,color=ink)=>{ctx.fillStyle=color;ctx.fillText(t(value),x,y)};
  const line=(x:number,y:number,xx:number,yy:number,color=palette[0])=>{ctx.strokeStyle=color;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(xx,yy);ctx.stroke()};
  const arrow=(x:number,y:number,xx:number,yy:number)=>{line(x,y,xx,yy);const a=Math.atan2(yy-y,xx-x);line(xx,yy,xx-8*Math.cos(a-.5),yy-8*Math.sin(a-.5));line(xx,yy,xx-8*Math.cos(a+.5),yy-8*Math.sin(a+.5))};
  const box=(x:number,y:number,w:number,h:number,color:string)=>{ctx.fillStyle=color+'22';ctx.strokeStyle=color;ctx.beginPath();ctx.roundRect(x,y,w,h,7);ctx.fill();ctx.stroke()};
@@ -79,11 +82,11 @@ function drawVisual(ctx:CanvasRenderingContext2D,step:Step,progress:number,image
   box(20,96,58,48,palette[0]);text('x',49,125);arrow(80,120,118,120);box(120,86,115,68,palette[1]);text(step.visual==='network'?'MLP':'Dönüşüm',177,125);arrow(238,120,278,120);ctx.strokeStyle=palette[2];ctx.beginPath();ctx.moveTo(49,92);ctx.lineTo(49,48);ctx.lineTo(300,48);ctx.lineTo(300,98);ctx.stroke();text('Artık bağlantı',175,35,palette[2]);ctx.beginPath();ctx.arc(300,120,22,0,Math.PI*2);ctx.stroke();text('+',300,126);arrow(324,120,365,120);ctx.fillStyle=palette[2];ctx.beginPath();ctx.arc(49+progress*251,48,5,0,Math.PI*2);ctx.fill();text('Girdi korunur + yeni özellik',190,204);
  }else if(branch==='projection'){
  // @stage projection
-if(image){const side=Math.min(image.naturalWidth,image.naturalHeight);ctx.drawImage(image,(image.naturalWidth-side)/2+selected%4*side/4,(image.naturalHeight-side)/2+Math.floor(selected/4)*side/4,side/4,side/4,22,76,82,82)}box(19,73,88,88,palette[2]);arrow(112,117,147,117);for(let i=0;i<16;i++){ctx.fillStyle=palette[i%4];ctx.fillRect(154,36+i*10,15,7)}arrow(177,117,228,117);box(234,80,66,72,palette[1]);text('W',267,123);arrow(304,117,331,117);vector(342,61,selected);text(`Yama ${selected+1}`,63,191);text('Düzleştir',165,218);text('İzdüşüm',267,191);
+if(image){const side=Math.min(image.naturalWidth,image.naturalHeight);ctx.drawImage(image,(image.naturalWidth-side)/2+selected%4*side/4,(image.naturalHeight-side)/2+Math.floor(selected/4)*side/4,side/4,side/4,22,76,82,82)}box(19,73,88,88,palette[2]);arrow(112,117,147,117);for(let i=0;i<16;i++){ctx.fillStyle=palette[i%4];ctx.fillRect(154,36+i*10,15,7)}arrow(177,117,228,117);box(234,80,66,72,palette[1]);text('W',267,123);arrow(304,117,331,117);vector(342,61,selected);text(`${t('Yama')} ${selected+1}`,63,191);text('Düzleştir',165,218);text('İzdüşüm',267,191);
  }else if(branch==='position'){
  // @stage position
 
-  for(let row=0;row<4;row++){text(row===0?'CLS':`P${row}`,30,56+row*44,row===0?palette[2]:ink);for(let col=0;col<6;col++){ctx.fillStyle=palette[(row+col)%4];ctx.fillRect(60+col*25,36+row*44,19,28)}text('+',227,56+row*44);box(250,36+row*44,85,28,palette[2]);text(`Konum ${row}`,292,55+row*44)}
+  for(let row=0;row<4;row++){text(row===0?'CLS':`P${row}`,30,56+row*44,row===0?palette[2]:ink);for(let col=0;col<6;col++){ctx.fillStyle=palette[(row+col)%4];ctx.fillRect(60+col*25,36+row*44,19,28)}text('+',227,56+row*44);box(250,36+row*44,85,28,palette[2]);text(`${t('Konum')} ${row}`,292,55+row*44)}
  }else if(branch==='codebook'){
  // @stage codebook
 const ids=[412,809,412,153];ids.forEach((id,row)=>{box(22,26+row*46,72,33,palette[row%4]);text('#'+id,58,48+row*46);arrow(100,42+row*46,143,42+row*46);for(let col=0;col<7;col++){ctx.fillStyle=palette[(id+col)%4];ctx.fillRect(155+col*25,26+row*46,18,33)}});text('Aynı ID → aynı özellik vektörü',190,231);
@@ -110,7 +113,7 @@ softmax(Array.from({length:3},(_,c)=>features.reduce((sum,v)=>sum+v.reduce((a,n,
  }else if(branch==='vector'){
  // @stage vector
 
-  for(let i=0;i<4;i++){vector(60+i*75,65,i);text(`Token ${i+1}`,70+i*75,215)}
+  for(let i=0;i<4;i++){vector(60+i*75,65,i);text(`${t('Token')} ${i+1}`,70+i*75,215)}
  }else if(branch==='decode'){
  // @stage decode
 
@@ -130,19 +133,10 @@ softmax(Array.from({length:3},(_,c)=>features.reduce((sum,v)=>sum+v.reduce((a,n,
  // @stage end
  ctx.globalAlpha=1;ctx.textAlign='start';
 }
-const calculationSource=implementationSource.slice(implementationSource.indexOf('// Small, deterministic demonstration:'),implementationSource.indexOf('const palette='));
-const drawingSource=implementationSource.slice(implementationSource.indexOf('function drawVisual('),implementationSource.indexOf('const calculationSource='));
-function activeStageSource(step:Step){
- const marker=`// @stage ${visualBranch(step)}\n`;
- const start=drawingSource.indexOf(marker);
- if(start<0)return drawingSource;
- const bodyStart=start+marker.length,next=drawingSource.indexOf('// @stage ',bodyStart);
- return drawingSource.slice(bodyStart,next<0?undefined:next).replace(/\s*}else if\(branch===[^\n]+\{\s*$/, '').replace(/\s*}else\{\s*$/, '').trim();
-}
 function StageVisual({step,progress,image}:{step:Step;progress:number;image:HTMLImageElement|null}){
  const canvas=useRef<HTMLCanvasElement>(null);
- useEffect(()=>{const repaint=()=>{const ctx=canvas.current?.getContext('2d');if(ctx&&canvas.current)drawVisual(ctx,step,progress,image,getComputedStyle(canvas.current).color)};repaint();const observer=new MutationObserver(repaint);observer.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','data-interface']});return()=>observer.disconnect()},[step,progress,image]);
- return <canvas width="380" height="240" ref={canvas} role="img" aria-label={step.name}/>;
+ useEffect(()=>{const repaint=()=>{const ctx=canvas.current?.getContext('2d');if(ctx&&canvas.current)drawVisual(ctx,step,progress,image,getComputedStyle(canvas.current).color,document.documentElement.dataset.theme==='light')};repaint();const observer=new MutationObserver(repaint);observer.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','data-interface','data-palette','lang']});return()=>observer.disconnect()},[step,progress,image]);
+ return <canvas width="380" height="240" ref={canvas} role="img" aria-label={t(step.name)}/>;
 }
 export default function ArchitectureDemo({kind,showMatrix}:{kind:string;showMatrix:boolean}){
  useLanguage();const spec=architectures[kind],section=useRef<HTMLElement>(null),image=useRef<HTMLImageElement|null>(null);const[loaded,setLoaded]=useState(false),[imageError,setImageError]=useState(false),[frame,setFrame]=useState(0),[playing,setPlaying]=useState(false),[visible,setVisible]=useState(false);const stage=Math.min(spec.steps.length-1,Math.floor(frame/20)),step=spec.steps[stage],last=spec.steps.length*20-1;
@@ -150,14 +144,24 @@ export default function ArchitectureDemo({kind,showMatrix}:{kind:string;showMatr
  useEffect(()=>{const observer=new IntersectionObserver(([e])=>setVisible(e.isIntersecting));if(section.current)observer.observe(section.current);return()=>observer.disconnect()},[]);
  useEffect(()=>{if(!playing||!visible)return;const timer=setInterval(()=>{if(document.visibilityState==='visible')setFrame(f=>{if(f>=last){setPlaying(false);return last}return f+1})},100);return()=>clearInterval(timer)},[playing,visible,last]);
  async function frames(){
-  const canvas=document.createElement('canvas');canvas.width=380;canvas.height=300;const ctx=canvas.getContext('2d');if(!ctx)throw Error('canvas');const tile=document.createElement('canvas');tile.width=380;tile.height=240;const painter=tile.getContext('2d');if(!painter)throw Error('canvas');const result:Uint8ClampedArray[]=[];ctx.font='13px sans-serif';const height=330+Math.max(...spec.steps.map(item=>captionLines(ctx,item.description,352).length))*18;canvas.height=height;
+  const canvas=document.createElement('canvas');canvas.width=640;canvas.height=620;const ctx=canvas.getContext('2d');if(!ctx)throw Error('canvas');const tile=document.createElement('canvas');tile.width=380;tile.height=240;const painter=tile.getContext('2d');if(!painter)throw Error('canvas');const result:Uint8ClampedArray[]=[],delays:number[]=[];
   const samples=Math.min(6,Math.floor(40/spec.steps.length));
+  const wrapped=(value:string,x:number,y:number,width:number,size=14)=>{ctx.font=`${size}px sans-serif`;drawCaption(ctx,t(value),x,y,width,size+4)};
   for(let active=0;active<spec.steps.length;active++)for(let p=0;p<samples;p++){
-   ctx.fillStyle='#0e1a22';ctx.fillRect(0,0,380,height);ctx.fillStyle='#e3eee9';ctx.font='bold 15px sans-serif';ctx.fillText(`${active+1}/${spec.steps.length} ${spec.steps[active].name}`,14,24,352);
-   drawVisual(painter,spec.steps[active],p/Math.max(1,samples-1),image.current);ctx.drawImage(tile,0,30);ctx.fillStyle='#e3eee9';ctx.font='11px sans-serif';ctx.fillText(dimensions[kind]?.[active]||'',14,278,352);ctx.fillText('Eğitici gösterim · sabit / temsili işlemler · eğitilmiş model yok',14,294,352);
-   ctx.fillStyle='#e3eee9';ctx.font='13px sans-serif';drawCaption(ctx,spec.steps[active].description,14,323,352);
-   result.push(ctx.getImageData(0,0,380,height).data);await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
-  }return{frames:result,width:380,height}
+   const current=spec.steps[active],progress=p/Math.max(1,samples-1),math=architectureMath(current.name,visualBranch(current));
+   ctx.fillStyle='#0e1a22';ctx.fillRect(0,0,640,620);ctx.fillStyle='#e3eee9';ctx.font='bold 20px sans-serif';drawCaption(ctx,`${active+1}/${spec.steps.length} · ${t(current.name)}`,18,27,604,23);
+   const gap=5,bar=(604-gap*(spec.steps.length-1))/spec.steps.length;for(let i=0;i<spec.steps.length;i++){ctx.fillStyle=i===active?'#e7c569':i<active?'#61b9bc':'#29414b';ctx.fillRect(18+i*(bar+gap),53,bar,7)}
+   ctx.fillStyle='#adbec3';wrapped('Eğitici gösterim · sabit / temsili işlemler · eğitilmiş model yok',18,78,604,11);
+   drawVisual(painter,current,progress,image.current);ctx.imageSmoothingEnabled=true;ctx.drawImage(tile,14,95,456,288);
+   if(image.current){ctx.drawImage(image.current,500,110,110,110);ctx.fillStyle='#e3eee9';wrapped('Girdi',500,244,110,13)}
+   ctx.fillStyle='#e7c569';wrapped(dimensions[kind]?.[active]||'',485,275,138,14);
+   const values=patchFeatures(image.current)[Math.min(15,Math.floor(progress*16))];ctx.fillStyle='#adbec3';ctx.font='12px monospace';drawCaption(ctx,values.slice(0,4).map(v=>v.toFixed(2)).join(' · '),485,335,138,17);
+   ctx.fillStyle='#e3eee9';wrapped(current.description,18,410,604,14);
+   ctx.fillStyle='#61b9bc';wrapped('Matematik',18,478,290,15);ctx.fillStyle='#e7c569';wrapped('Sayısal örnek',338,478,284,15);
+   ctx.fillStyle='#e3eee9';drawMathBlock(ctx,t(math.formula),18,502,292,112);drawMathBlock(ctx,t(math.example),338,502,284,112);
+   result.push(ctx.getImageData(0,0,640,620).data);delays.push(p===samples-1?1700:250);await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
+  }return{frames:result,width:640,height:620,delays}
  }
- return <section className="architecture-demo" ref={section}><h2>{spec.title}</h2><p>Eğitici gösterim: ViT yama izdüşümü ve dikkat örnekleri görüntüden, sabit ve eğitilmemiş ağırlıklarla hesaplanır. Üretim, gürültü giderme ve decoder görselleri temsildir.</p><div className="architecture-actions"><button onClick={()=>{if(frame===last)setFrame(0);setPlaying(!playing)}}>{t(playing?'Duraklat':'Başlat')}</button><button onClick={()=>{setPlaying(false);setFrame(0)}}>{t('Başa dön')}</button><button disabled={stage===0} onClick={()=>{setPlaying(false);setFrame((stage-1)*20)}}>Önceki aşama</button><button disabled={stage===spec.steps.length-1} onClick={()=>{setPlaying(false);setFrame((stage+1)*20)}}>{t('Sonraki aşama')}</button><ReadingGif name={kind} draw={frames} disabled={!loaded}/></div>{imageError&&<p role="alert">{t('Örnek fotoğraf yüklenemedi.')}</p>}<ol className="architecture-pipeline">{spec.steps.map((item,i)=><li key={i} className={stage===i?'active':stage>i?'complete':''}><button aria-current={stage===i?'step':undefined} onClick={()=>{setPlaying(false);setFrame(i*20)}}>{i+1} · {item.name}</button><StageVisual step={item} progress={i<stage?1:i===stage?(frame%20)/19:0} image={loaded?image.current:null}/><small dir="ltr">{dimensions[kind]?.[i]}</small></li>)}</ol><div className="cnn-explanation architecture-explanation" role="status" aria-live="polite" aria-atomic="true"><strong>{stage+1} / {spec.steps.length} · {step.name}</strong><p>{step.description}</p></div><div className="architecture-inspector"><div><h3>{step.name}</h3><StageVisual step={step} progress={(frame%20)/19} image={loaded?image.current:null}/></div><div><h3>Aşamanın girdisi → çıktısı</h3><p className="architecture-dimension" dir="ltr">{dimensions[kind]?.[stage]}</p><p>{step.description}</p><span className="architecture-key"><i/> Token / özellik <i/> Dönüşüm <i/> Konum / artık bağlantı</span></div></div>{showMatrix&&<div className="machine-matrix"><h3>{t('Kod / matris')}</h3><p>Bu bölümde gösterimin kullandığı gerçek TypeScript kaynağı yer alır. Hesaplama kodu sabit ağırlıklı küçük örnektir; çizim kodu eğitilmiş modelin kodu değildir.</p><h4>{stage+1} · {step.name} — çalışan kod</h4><pre key={`${kind}-${stage}`} dir="ltr"><code>{activeStageSource(step)}</code></pre><details><summary>Ortak hesaplama fonksiyonları</summary><pre dir="ltr"><code>{calculationSource}</code></pre></details><details><summary>Animasyonda çalışan çizim ve dikkat hesaplama kodu</summary><pre dir="ltr"><code>{drawingSource}</code></pre></details></div>}<a href={spec.source} target="_blank" rel="noreferrer">Mimari kaynağı ↗</a></section>
+
+ return <section className="architecture-demo" ref={section}><h2>{t(spec.title)}</h2><p>{t('Eğitici gösterim: ViT yama izdüşümü ve dikkat örnekleri görüntüden, sabit ve eğitilmemiş ağırlıklarla hesaplanır. Üretim, gürültü giderme ve decoder görselleri temsildir.')}</p><div className="architecture-actions"><button onClick={()=>{if(frame===last)setFrame(0);setPlaying(!playing)}}>{t(playing?'Duraklat':'Başlat')}</button><button onClick={()=>{setPlaying(false);setFrame(0)}}>{t('Başa dön')}</button><button disabled={stage===0} onClick={()=>{setPlaying(false);setFrame((stage-1)*20)}}>{t('Önceki aşama')}</button><button disabled={stage===spec.steps.length-1} onClick={()=>{setPlaying(false);setFrame((stage+1)*20)}}>{t('Sonraki aşama')}</button><ReadingGif name={kind} draw={frames} disabled={!loaded}/></div>{imageError&&<p role="alert">{t('Örnek fotoğraf yüklenemedi.')}</p>}<ol className="architecture-pipeline">{spec.steps.map((item,i)=><li key={i} className={stage===i?'active':stage>i?'complete':''}><button aria-current={stage===i?'step':undefined} onClick={()=>{setPlaying(false);setFrame(i*20)}}>{i+1} · {t(item.name)}</button><StageVisual step={item} progress={i<stage?1:i===stage?(frame%20)/19:0} image={loaded?image.current:null}/><small dir="ltr">{t(dimensions[kind]?.[i])}</small></li>)}</ol><div className="cnn-explanation architecture-explanation" role="status" aria-live="polite" aria-atomic="true"><strong>{stage+1} / {spec.steps.length} · {t(step.name)}</strong><p>{t(step.description)}</p></div><div className="architecture-inspector"><div><h3>{t(step.name)}</h3><StageVisual step={step} progress={(frame%20)/19} image={loaded?image.current:null}/></div><div><h3>{t('Aşamanın girdisi → çıktısı')}</h3><p className="architecture-dimension" dir="ltr">{t(dimensions[kind]?.[stage])}</p><p>{t(step.description)}</p><span className="architecture-key"><i/>{t(' Token / özellik ')}<i/>{t(' Dönüşüm ')}<i/>{t(' Konum / artık bağlantı')}</span></div></div>{showMatrix&&<LearningMath {...architectureMath(step.name,visualBranch(step))}/>}<a href={spec.source} target="_blank" rel="noreferrer">{t('Mimari kaynağı ↗')}</a></section>
 }
