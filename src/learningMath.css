@@ -34,9 +34,8 @@ body[data-scene] :is(.image-reading,.studio-hub,.object-cutout) button.mask-view
 
 .tool-animation>canvas{width:100%;height:auto;border:1px solid var(--button-edge);border-radius:24px;background:var(--button-glass-bottom)}
 
-.learning-hub>.hub-categories>.learning-model-classifiers{grid-column:1 / span 2}
-.learning-hub>.hub-categories>.learning-model-generators{grid-column:span 2}
-@media(max-width:900px){.learning-hub>.hub-categories>.learning-model-classifiers{grid-column:1}.learning-hub>.hub-categories>.learning-model-generators{grid-column:2}}
+/* Models occupy one cell each: four equal columns on desktop, two on mobile. */
+.learning-hub>.hub-categories>:is(.learning-model-classifiers,.learning-model-generators){grid-column:auto}
 
 .tool-animation video{display:block;width:min(100%,480px);max-height:480px;object-fit:contain;border:1px solid var(--button-edge);border-radius:24px;margin:16px auto;background:#102028}
 
